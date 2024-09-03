@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        //para solucionar dependencia de service chat profanity api agent interface
         $this->app->bind(
             ServiceChatProfanityApiAgentInterface::class,
             ServiceChatProfanityApiAgent::class
