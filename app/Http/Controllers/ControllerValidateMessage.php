@@ -36,13 +36,20 @@ class ControllerValidateMessage extends Controller
      */
     public function show(string $message)
     {
-        //
         $response = app(ServiceChatProfanity::class)->isProfanity($message);
-        $flagResponse= app(ServiceChatProfanity::class)->takeFlags($message);
-        $response= json_encode($response);
-        $flagResponse=json_encode($flagResponse);
-        return [$response,$flagResponse];
+        $flagResponse = app(ServiceChatProfanity::class)->takeFlags($message);
+
+        // Convertir los arrays a cadenas JSON
+        $response = json_encode($response);
+        $flagResponse = json_encode($flagResponse);
+
+        return view('IntercambioDeLibros', [
+            'response' => $response,
+            'flagResponse' => $flagResponse
+        ]);
     }
+
+
 
 
     /**
