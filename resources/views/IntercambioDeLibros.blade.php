@@ -1,55 +1,44 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Aviso Importante</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #87CEEB; /* Celeste cielo */
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            background-color: #F4A6A6; /* Rosa viejo */
-            border: 2px solid #D8000C;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            text-align: center;
-        }
-        h2 {
-            color: #D8000C;
-        }
-        p {
-            margin: 10px 0;
-        }
-        .details {
-            background-color: #FFF;
-            border-radius: 5px;
-            padding: 10px;
-            margin-top: 20px;
-        }
-    </style>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicaciones de Libros</title>
+    <link rel="stylesheet" href="{{ asset('css/intercambiolibrosstyle.css') }}"></head>
 <body>
 <div class="container">
-    <h2>Aviso Importante</h2>
-    <p>Hola,</p>
-    <p>Hemos detectado que tu mensaje contiene lenguaje inapropiado o información personal. Queremos recordarte que nuestra comunidad valora el respeto y la privacidad de todos los usuarios.</p>
-    <p>Por favor, evita el uso de insultos y no compartas información personal en tus mensajes.</p>
-    <div class="details">
-        <p><strong>Detalles del análisis:</strong></p>
-        <p><strong>Respuesta:</strong> {{ $response }}</p>
-        <p><strong>Flags:</strong> {{ $flagResponse }}</p>
+    <h1>PASA LIBROS</h1>
+
+    <div class="post">
+        <h2>MARIA ★★★</h2>
+        <p><strong>Libros:</strong> La materia oscura, Harry Potter</p>
+        <textarea placeholder="Escribe una oferta..."></textarea>
+        <button>Ofertar</button>
     </div>
-    <p>¡Gracias por tu comprensión y por ayudarnos a mantener un ambiente seguro y amigable para todos!</p>
-    <p>Atentamente,<br>El equipo de [Nombre de la Aplicación]</p>
+
+    <div class="post">
+        <h2>SOFIA ★★★★</h2>
+        <p><strong>Libros:</strong> Viaje al centro de la Tierra</p>
+        <textarea placeholder="Escribe una oferta..."></textarea>
+        <button>Ofertar</button>
+    </div>
+
+    <div class="post">
+        <h2>PEDRO ★</h2>
+        <p><strong>Libros:</strong> El mundo de Sofía</p>
+
+        <form class="post" action="{{ route('publicaciones.store') }}" method="POST">
+            @csrf
+            <textarea class="post" name="message" placeholder="Escribe una oferta..."></textarea>
+            <button type="submit">Ofertar</button>
+        </form>
+
+        @if (isset($response) && $response)
+            <p class="violation">❗Estas seguro de comentar eso, podría ser contra las normas de la aplicación.</p>
+        @endif
+
+    </div>
 </div>
 </body>
 </html>
