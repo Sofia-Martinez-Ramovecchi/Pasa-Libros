@@ -1,17 +1,17 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Services\ServiceChatProfanity;
-use Illuminate\Http\Request;
-use Illuminate\View\View;
+use App\Http\Requests\ServiceChatRequest;
+use Illuminate\Http\RedirectResponse;
 
 class ControllerValidateMessage extends Controller{
-    public function store(Request $message) : view
+    public function store(ServiceChatRequest $message): RedirectResponse
     {
 
-        $messageContent = $message->input('message');
-        $response = app(ServiceChatProfanity::class)->isProfanity($messageContent);
-        return view('IntercambioDeLibros', ['response' => $response]);
+        $validated = $message->validated();
+        $validated = $message->safe()->only(['message']);
+        return back()->withInput()->with('status','success');
+
     }
 
 
