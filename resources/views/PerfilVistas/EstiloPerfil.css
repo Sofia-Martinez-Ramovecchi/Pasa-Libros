@@ -91,3 +91,8 @@ header {
     border: 1px solid rgb(168, 167, 167);
  
 }
+
+div.EditarEliminar{
+    top: 10px;
+     right: 10px;
+}
