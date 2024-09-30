@@ -11,11 +11,28 @@
 </head>
 <body>
     <div class="container-xl" id="Division">
+        
         <!---------- CABEZERA PAGINA ----------------->
+        <header>
             <div id="headerDiv" class="dynamic-header">
                 <div class="container-fluid p-5 text-white d-flex flex-column flex-md-row justify-content-between align-items-center">
                     <div class="col-md-2 text-center text-md-end ms-auto">
-                        <button type="button" class="btn btn-outline-dark btn-floating m-1" data-bs-toggle="modal" data-bs-target="#editProfileModal">Editar Perfil</button>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                Mi Perfil
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                                <li>
+                                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#editProfileModal">Editar Perfil</button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item" type="button">Cerrar Sesión</button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item text-danger" type="button">Eliminar Cuenta</button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div><br>
@@ -28,6 +45,7 @@
                 <h3 id="nombrePerfil">Mica</h3>
                 <p>Se unió en --- de ---</p>
             </div><br>
+        </header><br>
     
         <!--------------BARRA RESEÑAS/PUBLICACIONES-------------->
             <div id="ContenedorPublicaciones">
@@ -42,10 +60,10 @@
                     </ul>
 
     <!-- ----------------- PUBLICACIONES Pagina------------- -->
-                    <div class="tab-content mt-4" id="myTabContent">
+                <div class="tab-content mt-4" id="myTabContent">
                         <div class="tab-pane fade show active" id="publicaciones" role="tabpanel" aria-labelledby="publicaciones-tab">
                             
-                <!---------------- PUBLICAR LIBRO  ------------------>                 
+    <!---------------- PUBLICAR LIBRO  ------------------>                 
                             <div class="card my-3">
                                 <div class="card-body">
                                 <button type="button" class="btn btn-light w-100 text-start" data-bs-toggle="modal" data-bs-target="#publicarLibroModal">
@@ -55,19 +73,44 @@
                             </div>
                             
         <!---------------- PUBLICACIONES -------------------->
-                            <div class="card mb-3">
+                            <div class="card mb-3 position-relative">
+                                <div class="dropdown position-absolute EditarEliminar">
+                                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        &#x22EE; <!-- Unicode para tres puntos verticales -->
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                                        <li>
+                                            <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#editPublicationModal">Editar Publicación</button>
+                                        </li>
+                                        <li>
+                                            <button class="dropdown-item text-danger" type="button">Eliminar Publicación</button>
+                                        </li>
+                                    </ul>
+                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title">Título del Libro</h5>
                                     <p class="card-text">Descripción del libro.</p>
                                 </div>
                             </div>
-                            <div class="card mb-3">
+                            <div class="card mb-3 position-relative">
+                                <div class="dropdown position-absolute EditarEliminar">
+                                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        &#x22EE; <!-- Unicode para tres puntos verticales -->
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                                        <li>
+                                            <button class="dropdown-item" type="button">Editar Publicación</button>
+                                        </li>
+                                        <li>
+                                            <button class="dropdown-item text-danger" type="button">Eliminar Publicación</button>
+                                        </li>
+                                    </ul>
+                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title">Título del Libro</h5>
                                     <p class="card-text">Descripción del libro.</p>
                                 </div>
                             </div>
-                        </div>
         
     <!---------------- RESEÑAS PAGINA ----------------->
                         <div class="tab-pane fade" id="reseñas" role="tabpanel" aria-labelledby="reseñas-tab">
@@ -79,6 +122,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
                 </section>
             </div>
             <br>
@@ -101,43 +145,90 @@
     </div>
 
 
-<!------------MODAL PUBLICAR LIBRO--------------------->
+<!--Modal para publicar libro-->
     <div class="modal fade" id="publicarLibroModal" tabindex="-1" aria-labelledby="publicarLibroLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="publicarLibroLabel">Publicar un libro</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="publicarLibroLabel">Publicar un libro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="publicarLibroForm">
+                        <div class="mb-4">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="tituloLibro" class="form-label">Título del Libro</label>
+                                        <input type="text" class="form-control" id="tituloLibro" placeholder="Escribe el título del libro" required>
+                                        <div class="invalid-feedback">Por favor, ingresa un título.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="autorLibro" class="form-label">Autor</label>
+                                        <input type="text" class="form-control" id="autorLibro" placeholder="Escribe el autor del libro" required>
+                                        <div class="invalid-feedback">Por favor, ingresa el autor.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="EditorialLibro" class="form-label">Editorial</label>
+                                        <input type="text" class="form-control" name="EditorialLibro" id="EditorialLibro" placeholder="Indique la editorial del libro" required>
+                                        <div class="invalid-feedback">Por favor, ingresa la editorial.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="VersionLibro" class="form-label">Versión</label>
+                                        <input type="text" class="form-control" name="VersionLibro" id="VersionLibro" placeholder="Escriba la versión del libro" required>
+                                        <div class="invalid-feedback">Por favor, ingresa la versión.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="CodigoInternacional" class="form-label">Código Internacional</label>
+                                        <input type="text" class="form-control" name="CodigoInternacional" id="CodigoInternacional" placeholder="Escribe el Código Internacional" required>
+                                        <div class="invalid-feedback">Por favor, ingresa el código internacional.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="imagenLibro" class="form-label">Subir portada del libro</label>
+                                        <input class="form-control" type="file" id="imagenLibro" required>
+                                        <div class="invalid-feedback">Por favor, sube la portada.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="imagenLibroContraportada" class="form-label">Contraportada (Opcional)</label>
+                                        <input class="form-control" type="file" id="imagenLibroContraportada">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="descripcionLibro" class="form-label">Descripción</label>
+                                        <textarea class="form-control" id="descripcionLibro" rows="3" placeholder="Escribe una breve descripción del libro" required></textarea>
+                                        <div class="invalid-feedback">Por favor, ingresa una descripción.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>  
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="BtnPublicarLibro">Publicar</button>
+                </div>
             </div>
-            <div class="modal-body">
-                <form id="publicarLibroForm">
-                    <div class="mb-3">
-                        <label for="tituloLibro" class="form-label">Título del Libro</label>
-                        <input type="text" class="form-control" id="tituloLibro" placeholder="Escribe el título del libro">
-                        <div class="invalid-feedback"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="autorLibro" class="form-label">Autor</label>
-                        <input type="text" class="form-control" id="autorLibro" placeholder="Escribe el autor del libro">
-                        <div class="invalid-feedback"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="descripcionLibro" class="form-label">Descripción</label>
-                        <textarea class="form-control" id="descripcionLibro" rows="3" placeholder="Escribe una breve descripción del libro"></textarea>
-                        <div class="invalid-feedback"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="imagenLibro" class="form-label">Subir imagen del libro</label>
-                        <input class="form-control" type="file" id="imagenLibro">
-                        <div class="invalid-feedback"></div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-modal="publicarLibroModal" data-form="publicarLibroForm" class="btnCancelarModal" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="BtnPublicarLibro" >Publicar</button>
-            </div>
-        </div>
         </div>
     </div>
 
@@ -196,7 +287,6 @@
         </div>
     </div>
 
-    
-   
 </body>
 </html>
+
