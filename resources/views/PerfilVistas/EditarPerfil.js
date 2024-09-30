@@ -1,4 +1,5 @@
 
+
 document.addEventListener('DOMContentLoaded',function(){
    
    document.getElementById('btnGuardarCambios').addEventListener('click', function(event){
@@ -13,15 +14,10 @@ document.addEventListener('DOMContentLoaded',function(){
                 setTimeout(function () {
                     document.getElementById('EditarForm').submit();  // Envía el formulario
                 }, 500);*/
-                cerrarModal();
+                cerrarModal('editProfileModal');
                 limpiarInpts('EditarForm');  
             }
     });
-
- /*  document.getElementById('btnCancelaEditar').addEventListener('click', function(){
-        limpiarInpts('EditarForm');
-        cerrarModal('editProfileModal');
-   });*/
 
    document.getElementById('BtnPublicarLibro').addEventListener('click', function(event){
         event.preventDefault();
@@ -83,9 +79,17 @@ function ValidarPublicacionNueva(){
     if(!validarCampoVacio('imagenLibro')){
         flag=false;
     }
+    if(!validarCampoVacio('VersionLibro')){
+         flag=false;
+    }
+    if(!validarCampoVacio('EditorialLibro')){
+         flag=false;
+    }
+    if(!validarCampoVacio('CodigoInternacional')){
+         flag=false;
+    }
  
    return flag;
-    
 }
 
 // Validación de formulario en JavaScript
