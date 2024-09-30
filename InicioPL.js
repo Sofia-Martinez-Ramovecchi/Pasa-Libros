@@ -1,20 +1,46 @@
 document.addEventListener('DOMContentLoaded', function() {
+  
     const books = document.querySelectorAll('.book-item');
-    
+
     books.forEach(book => {
-        book.addEventListener('click', function() {
-            const title = this.querySelector('h3').textContent;
-            const description = this.querySelector('p').textContent;
+        const editButton = book.querySelector('.edit-button');
+        
+        editButton.addEventListener('click', function() {
+            const title = book.querySelector('h3').textContent;
+            const description = book.querySelector('.descripcion').textContent;
+            const state = book.querySelector('.Estado').textContent;
+            const editorial = book.querySelector('.Editorial').textContent;
+            const author = book.querySelector('.Autor').textContent;
+            const version = book.querySelector('.Version').textContent;
+            const code = book.querySelector('.Codigo').textContent;
             const imageSrc = 'ruta_de_la_imagen'; // Reemplaza con la lógica adecuada para la portada del libro
             
             // Rellenar los datos en el modal
             document.getElementById('bookTitle').textContent = title;
             document.getElementById('bookDescription').textContent = description;
+            document.getElementById('bookState').textContent = state;
+            document.getElementById('bookEditorial').textContent = editorial;
+            document.getElementById('bookAuthor').textContent = author;
+            document.getElementById('bookVersion').textContent = version;
+            document.getElementById('bookCode').textContent = code;
             document.getElementById('bookImage').src = imageSrc;
-            
+
             // Mostrar el modal
-            const bookModal = new bootstrap.Modal(document.getElementById('bookDetailsModal'));
+            const bookModal = new bootstrap.Modal(document.getElementById('ModalInfoLibro'));
             bookModal.show();
         });
     });
+
+    let buscador = document.getElementById('BuscadorLibro');
+    buscador.addEventListener('input', function() {
+        let error = buscador;
+        error.classList.remove('is-invalid');
+        
+        if (buscador.value.trim() === '') { // Verifica si el valor está vacío
+            error.classList.add('is-invalid');
+        }
+    });
+
+
 });
+
