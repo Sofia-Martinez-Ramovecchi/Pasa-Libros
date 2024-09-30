@@ -23,11 +23,12 @@
                 <!------- buscador ----->
                 <div class="col-md-6 d-flex justify-content-center"> <!-- Centro el buscador -->
                     <div class="input-group" id="search-bar">
-                        <label for="searchBooks" class="visually-hidden">Buscar libros</label> <!-- Label accesible -->
-                        <input id="searchBooks" type="text" class="form-control" placeholder="Buscar libros..." aria-label="Buscar libros...">
+                        <label for="BuscadorLibro" class="visually-hidden">Buscar libros</label> <!-- Label accesible -->
+                        <input id="BuscadorLibro" type="text" class="form-control" placeholder="Buscar libros..." aria-label="Buscar libros...">
                         <span class="input-group-text">
                             <i class="fas fa-search"></i>
                         </span>
+                        <div class="invalid-feedback"></div>
                     </div>                    
                 </div>
                 <nav class="col-sm-3 text-end ">
@@ -49,25 +50,57 @@
                                 <div class="col-sm-6 col-md-3">
                                     <div class="book-item border p-3 rounded mb-3">
                                         <h3>Libro 1</h3>
-                                        <p>Descripción del libro 1...</p>
+                                        <p class="descripcion">Descripción del libro 1...</p>
+                                        <p class="Estado">Estado</p>
+                                        <p class="Editorial">Editorial</p>
+                                        <p class="Autor">Autor</p>
+                                        <p class="Version">Versión</p>
+                                        <p class="Codigo">Código internacional</p>
+                                        <button type="button" class="btn btn-link edit-button" data-bs-toggle="modal" data-bs-target="#ModalInfoLibro">
+                                            Ver más&#8230; <!-- Tres puntos -->
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="book-item border p-3 rounded mb-3">
                                         <h3>Libro 2</h3>
-                                        <p>Descripción del libro 2...</p>
+                                        <p class="descripcion">Descripción del libro 1...</p>
+                                        <p class="Estado">Estado</p>
+                                        <p class="Editorial">Editorial</p>
+                                        <p class="Autor">Autor</p>
+                                        <p class="Version">Versión</p>
+                                        <p class="Codigo">Código internacional</p>
+                                        <button type="button" class="btn btn-link edit-button" data-bs-toggle="modal" data-bs-target="#ModalInfoLibro">
+                                            Ver más&#8230; <!-- Tres puntos -->
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="book-item border p-3 rounded mb-3">
                                         <h3>Libro 3</h3>
-                                        <p>Descripción del libro 3...</p>
+                                        <p class="descripcion">Descripción del libro 1...</p>
+                                        <p class="Estado">Estado</p>
+                                        <p class="Editorial">Editorial</p>
+                                        <p class="Autor">Autor</p>
+                                        <p class="Version">Versión</p>
+                                        <p class="Codigo">Código internacional</p>
+                                        <button type="button" class="btn btn-link edit-button" data-bs-toggle="modal" data-bs-target="#ModalInfoLibro">
+                                            Ver más&#8230; <!-- Tres puntos -->
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="book-item border p-3 rounded mb-3">
                                         <h3>Libro 4</h3>
-                                        <p>Descripción del libro 4...</p>
+                                        <p class="descripcion">Descripción del libro 1...</p>
+                                        <p class="Estado">Estado</p>
+                                        <p class="Editorial">Editorial</p>
+                                        <p class="Autor">Autor</p>
+                                        <p class="Version">Versión</p>
+                                        <p class="Codigo">Código internacional</p>
+                                        <button type="button" class="btn btn-link edit-button" data-bs-toggle="modal" data-bs-target="#ModalInfoLibro">
+                                            Ver más&#8230; <!-- Tres puntos -->
+                                        </button>
                                     </div>
                                 </div>
                         </div>
@@ -77,25 +110,57 @@
                                 <div class="col-sm-6 col-md-3">
                                     <div class="book-item border p-3 rounded mb-3">
                                         <h3>Libro 5</h3>
-                                        <p>Descripción del libro 5...</p>
+                                        <p class="descripcion">Descripción del libro 1...</p>
+                                        <p class="Estado">Estado</p>
+                                        <p class="Editorial">Editorial</p>
+                                        <p class="Autor">Autor</p>
+                                        <p class="Version">Versión</p>
+                                        <p class="Codigo">Código internacional</p>
+                                        <button type="button" class="btn btn-link edit-button" data-bs-toggle="modal" data-bs-target="#ModalInfoLibro">
+                                            Ver más&#8230; <!-- Tres puntos -->
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="book-item border p-3 rounded mb-3">
                                         <h3>Libro 6</h3>
-                                        <p>Descripción del libro 6...</p>
+                                        <p class="descripcion">Descripción del libro 1...</p>
+                                        <p class="Estado">Estado</p>
+                                        <p class="Editorial">Editorial</p>
+                                        <p class="Autor">Autor</p>
+                                        <p class="Version">Versión</p>
+                                        <p class="Codigo">Código internacional</p>
+                                        <button type="button" class="btn btn-link edit-button" data-bs-toggle="modal" data-bs-target="#ModalInfoLibro">
+                                            Ver más&#8230; <!-- Tres puntos -->
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="book-item border p-3 rounded mb-3">
                                         <h3>Libro 7</h3>
-                                        <p>Descripción del libro 7...</p>
+                                        <p class="descripcion">Descripción del libro 1...</p>
+                                        <p class="Estado">Estado</p>
+                                        <p class="Editorial">Editorial</p>
+                                        <p class="Autor">Autor</p>
+                                        <p class="Version">Versión</p>
+                                        <p class="Codigo">Código internacional</p>
+                                        <button type="button" class="btn btn-link edit-button" data-bs-toggle="modal" data-bs-target="#ModalInfoLibro">
+                                            Ver más&#8230; <!-- Tres puntos -->
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="book-item border p-3 rounded mb-3">
                                         <h3>Libro 8</h3>
-                                        <p>Descripción del libro 8...</p>
+                                        <p class="descripcion">Descripción del libro 1...</p>
+                                        <p class="Estado">Estado</p>
+                                        <p class="Editorial">Editorial</p>
+                                        <p class="Autor">Autor</p>
+                                        <p class="Version">Versión</p>
+                                        <p class="Codigo">Código internacional</p>
+                                        <button type="button" class="btn btn-link edit-button" data-bs-toggle="modal" data-bs-target="#ModalInfoLibro">
+                                            Ver más&#8230; <!-- Tres puntos -->
+                                        </button>
                                     </div>
                                 </div>
                         </div>
@@ -126,25 +191,57 @@
                             <div class="col-sm-6 col-md-3">
                                 <div class="book-item border p-3 rounded mb-3">
                                     <h3>Libro 1</h3>
-                                    <p>Descripción del libro 1...</p>
+                                    <p class="descripcion">Descripción del libro 1...</p>
+                                    <p class="Estado">Estado</p>
+                                    <p class="Editorial">Editorial</p>
+                                    <p class="Autor">Autor</p>
+                                    <p class="Version">Versión</p>
+                                    <p class="Codigo">Código internacional</p>
+                                    <button type="button" class="btn btn-link edit-button" data-bs-toggle="modal" data-bs-target="#ModalInfoLibro">
+                                        Ver más&#8230; <!-- Tres puntos -->
+                                    </button>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <div class="book-item border p-3 rounded mb-3">
                                     <h3>Libro 2</h3>
-                                    <p>Descripción del libro 2...</p>
+                                    <p class="descripcion">Descripción del libro 1...</p>
+                                    <p class="Estado">Estado</p>
+                                    <p class="Editorial">Editorial</p>
+                                    <p class="Autor">Autor</p>
+                                    <p class="Version">Versión</p>
+                                    <p class="Codigo">Código internacional</p>
+                                    <button type="button" class="btn btn-link edit-button" data-bs-toggle="modal" data-bs-target="#ModalInfoLibro">
+                                        Ver más&#8230; <!-- Tres puntos -->
+                                    </button>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <div class="book-item border p-3 rounded mb-3">
                                     <h3>Libro 3</h3>
-                                    <p>Descripción del libro 3...</p>
+                                    <p class="descripcion">Descripción del libro 1...</p>
+                                    <p class="Estado">Estado</p>
+                                    <p class="Editorial">Editorial</p>
+                                    <p class="Autor">Autor</p>
+                                    <p class="Version">Versión</p>
+                                    <p class="Codigo">Código internacional</p>
+                                    <button type="button" class="btn btn-link edit-button" data-bs-toggle="modal" data-bs-target="#ModalInfoLibro">
+                                        Ver más&#8230; <!-- Tres puntos -->
+                                    </button>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <div class="book-item border p-3 rounded mb-3">
                                     <h3>Libro 4</h3>
-                                    <p>Descripción del libro 4...</p>
+                                    <p class="descripcion">Descripción del libro 1...</p>
+                                    <p class="Estado">Estado</p>
+                                    <p class="Editorial">Editorial</p>
+                                    <p class="Autor">Autor</p>
+                                    <p class="Version">Versión</p>
+                                    <p class="Codigo">Código internacional</p>
+                                    <button type="button" class="btn btn-link edit-button" data-bs-toggle="modal" data-bs-target="#ModalInfoLibro">
+                                        Ver más&#8230; <!-- Tres puntos -->
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -154,25 +251,57 @@
                             <div class="col-sm-6 col-md-3">
                                 <div class="book-item border p-3 rounded mb-3">
                                     <h3>Libro 5</h3>
-                                    <p>Descripción del libro 5...</p>
+                                    <p class="descripcion">Descripción del libro 1...</p>
+                                    <p class="Estado">Estado</p>
+                                    <p class="Editorial">Editorial</p>
+                                    <p class="Autor">Autor</p>
+                                    <p class="Version">Versión</p>
+                                    <p class="Codigo">Código internacional</p>
+                                    <button type="button" class="btn btn-link edit-button" data-bs-toggle="modal" data-bs-target="#ModalInfoLibro">
+                                        Ver más&#8230; <!-- Tres puntos -->
+                                    </button>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <div class="book-item border p-3 rounded mb-3">
                                     <h3>Libro 6</h3>
-                                    <p>Descripción del libro 6...</p>
+                                    <p class="descripcion">Descripción del libro 1...</p>
+                                    <p class="Estado">Estado</p>
+                                    <p class="Editorial">Editorial</p>
+                                    <p class="Autor">Autor</p>
+                                    <p class="Version">Versión</p>
+                                    <p class="Codigo">Código internacional</p>
+                                    <button type="button" class="btn btn-link edit-button" data-bs-toggle="modal" data-bs-target="#ModalInfoLibro">
+                                        Ver más&#8230; <!-- Tres puntos -->
+                                    </button>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <div class="book-item border p-3 rounded mb-3">
                                     <h3>Libro 7</h3>
-                                    <p>Descripción del libro 7...</p>
+                                    <p class="descripcion">Descripción del libro 1...</p>
+                                    <p class="Estado">Estado</p>
+                                    <p class="Editorial">Editorial</p>
+                                    <p class="Autor">Autor</p>
+                                    <p class="Version">Versión</p>
+                                    <p class="Codigo">Código internacional</p>
+                                    <button type="button" class="btn btn-link edit-button" data-bs-toggle="modal" data-bs-target="#ModalInfoLibro">
+                                        Ver más&#8230; <!-- Tres puntos -->
+                                    </button>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <div class="book-item border p-3 rounded mb-3">
                                     <h3>Libro 8</h3>
-                                    <p>Descripción del libro 8...</p>
+                                    <p class="descripcion">Descripción del libro 1...</p>
+                                    <p class="Estado">Estado</p>
+                                    <p class="Editorial">Editorial</p>
+                                    <p class="Autor">Autor</p>
+                                    <p class="Version">Versión</p>
+                                    <p class="Codigo">Código internacional</p>
+                                    <button type="button" class="btn btn-link edit-button" data-bs-toggle="modal" data-bs-target="#ModalInfoLibro">
+                                        Ver más&#8230; <!-- Tres puntos -->
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -195,30 +324,30 @@
             <div class="container border rounded shadow-sm p-4">
                 <div class="row">
                     <div class="col-md-3">
-                        <button type="button" class="btn btn-primary CategoriaBtn">Fantasía</button>
+                        <button type="button"  class="btn btn-outline-dark CategoriaBtn">Fantasía</button>
                     </div>
                     <div class="col-md-3">
-                        <button type="button" class="btn btn-primary CategoriaBtn">Terror</button>
+                        <button type="button" class="btn btn-outline-dark CategoriaBtn">Terror</button>
                     </div>
                     <div class="col-md-3">
-                        <button type="button" class="btn btn-primary CategoriaBtn">Historia</button>
+                        <button type="button" class="btn btn-outline-dark CategoriaBtn">Historia</button>
                     </div>
                     <div class="col-md-3">
-                        <button type="button" class="btn btn-primary CategoriaBtn">Comics y Mangas</button>
+                        <button type="button" class="btn btn-outline-dark CategoriaBtn">Comics y Mangas</button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <button type="button" class="btn btn-primary CategoriaBtn">Arte</button>
+                        <button type="button" class="btn btn-outline-dark CategoriaBtn">Arte</button>
                     </div>
                     <div class="col-md-3">
-                        <button type="button" class="btn btn-primary CategoriaBtn">Infantiles</button>
+                        <button type="button" class="btn btn-outline-dark CategoriaBtn">Infantiles</button>
                     </div>
                     <div class="col-md-3">
-                        <button type="button" class="btn btn-primary CategoriaBtn">Filosofía</button>
+                        <button type="button" class="btn btn-outline-dark CategoriaBtn">Filosofía</button>
                     </div>
                     <div class="col-md-3">
-                        <button type="button" class="btn btn-primary CategoriaBtn">Biografía</button>
+                        <button type="button" class="btn btn-outline-dark CategoriaBtn">Biografía</button>
                     </div>
                 </div>
             </div><br>
@@ -233,27 +362,47 @@
         </div>
         <p class="mb-0">PasaLibros © 2024 - Todos los derechos reservados</p>
     </footer>
+   
 
-    <!-- Modal-->
-     <!-- Modal -->
-    <div class="modal fade" id="bookDetailsModal" tabindex="-1" aria-labelledby="bookDetailsModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="bookTitle">Título del libro</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Modal de Información de Publicación -->
+    <div class="modal fade" id="ModalInfoLibro" tabindex="-1" aria-labelledby="bookInfoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="bookInfoModalLabel">Información de publicación</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+            <div class="row">
+                <!-- Columna para las imágenes -->
+                <div class="col-md-4 text-center">
+                <img src="ruta_imagen_portada.jpg" alt="Portada del libro" class="img-fluid mb-3 rounded shadow-sm">
+                <img src="ruta_imagen_contraportada.jpg" alt="Contraportada del libro" class="img-fluid mb-3 rounded shadow-sm">
                 </div>
-                <div class="modal-body">
-                    <img id="bookImage" src="" alt="Portada del libro" class="img-fluid mb-3">
-                    <p id="bookDescription">Descripción del libro...</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                
+                <!-- Columna para la información -->
+                <div class="col-md-8">
+                    <h3 id="bookTitle" class="mb-3">Nombre del Libro</h3>
+                    <p><strong>Estado:</strong> <span id="bookState"></span></p>
+                    <p><strong>Descripción:</strong> <span id="bookDescription"></span></p>
+                    <p><strong>Localidad:</strong> <span id="bookLocation"></span></p>
+                    <p><strong>Editorial:</strong> <span id="bookEditorial"></span></p>
+                    <p><strong>Autor:</strong> <span id="bookAuthor"></span></p>
+                    <p><strong>Versión:</strong> <span id="bookVersion"></span></p>
+                    <p><strong>Código Internacional:</strong> <span id="bookCode"></span></p>
                 </div>
             </div>
+            </div>
+            <div class="modal-footer">
+            <!-- Botones para las opciones -->
+            <button type="button" class="btn btn-primary">Enviar solicitud de intercambio</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+            </div>
+        </div>
         </div>
     </div>
   
 
 </body>
 </html>
+
