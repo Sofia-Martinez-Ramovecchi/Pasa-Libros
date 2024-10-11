@@ -18,9 +18,6 @@ class AppServiceProvider extends ServiceProvider
             ServiceChatProfanityApiAgentInterface::class,
             ServiceChatProfanityApiAgent::class
         );
-
-
-
     }
 
     /**

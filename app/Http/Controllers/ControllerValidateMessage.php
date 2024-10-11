@@ -12,7 +12,6 @@ class ControllerValidateMessage extends Controller{
         $validated = $message->safe()->only(['message']);
         return back()->withInput()->with('status','success');
 
-
     }
 
 

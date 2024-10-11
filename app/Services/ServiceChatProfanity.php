@@ -4,10 +4,9 @@ namespace App\Services;
 
 use App\Contracts\ServiceChatProfanityApiAgentInterface;
 
-class ServiceValidadOferta
+class ServiceChatProfanity
 {
     private ServiceChatProfanityApiAgentInterface $agent;
-
 
     public function __construct(ServiceChatProfanityApiAgentInterface $agent)
     {
