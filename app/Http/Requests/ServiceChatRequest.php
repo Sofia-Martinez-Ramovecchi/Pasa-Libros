@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Services\ServiceChatProfanity;
+use App\Services\ServiceValidadOferta;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Validator;
 
@@ -28,7 +28,7 @@ class ServiceChatRequest extends FormRequest
     {
         return [
             function (Validator $validator) {
-                if ($this->somethingElseIsInvalid(app(ServiceChatProfanity::class))) {
+                if ($this->somethingElseIsInvalid(app(ServiceValidadOferta::class))) {
                     $validator->errors()->add(
                         'field',
                         'Has enviando un mensaje que va contra las normas de la aplicacion!'
@@ -38,7 +38,7 @@ class ServiceChatRequest extends FormRequest
         ];
     }
 
-    private function somethingElseIsInvalid(ServiceChatProfanity $serviceChatProfanity): bool
+    private function somethingElseIsInvalid(ServiceValidadOferta $serviceChatProfanity): bool
     {
         if($serviceChatProfanity->isProfanity($this->input('message'))){
             return true;

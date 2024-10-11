@@ -1,3 +1,3 @@
 <div>
-    <!-- It is not the man who has too little, but the man who craves more, that is poor. - Seneca -->
+    <p>holacomoestas ACA ESTARA LA PAGINA DE BIENVENIDA QUE SE MUESTRA AL CERRAR SESION, O AL ENTRAR A LA APP</p>
 </div>
