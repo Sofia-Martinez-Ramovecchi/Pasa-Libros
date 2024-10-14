@@ -5,10 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
     <script defer src="./InicioPL/InicioPL.js"></script>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+
+    <style>
+        #map { height: 500px; width: 100%; }
+    </style>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./InicioPL/EstiloInicio.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+ 
 </head>
 <body>
 
@@ -34,6 +44,12 @@
                     <button type="button" class="btn btn-link me-3" aria-label="Notificaciones">
                         <i class="fas fa-bell"></i>
                     </button>
+                    
+                    <!-- Icono de ubicación -->
+                    <button type="button" class="btn btn-link me-3" aria-label="Ubicación" data-bs-toggle="modal" data-bs-target="#ubicacionModal" id="btnUbicacion">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </button>
+
                     <!-- Icono para publicar un libro -->
                     <button type="button" class="btn btn-link me-3" aria-label="Publicar libro" data-bs-toggle="modal" data-bs-target="#publicarLibroModal">
                         <i class="fas fa-plus"></i>
@@ -141,5 +157,25 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal para mostrar el mapa -->
+        <div class="modal fade" id="ubicacionModal" tabindex="-1" aria-labelledby="ubicacionModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ubicacionModalLabel">Ubicación</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                       <?php require __DIR__.'/mapa.php'; ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 </body>
 </html>
