@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const author = book.querySelector('.Autor').textContent;
             const version = book.querySelector('.Version').textContent;
             const code = book.querySelector('.Codigo').textContent;
-            const imageSrc = 'ruta_de_la_imagen'; // Reemplaza con la lógica adecuada para la portada del libro
-            
+
+
             // Rellenar los datos en el modal
             document.getElementById('bookTitle').textContent = title;
             document.getElementById('bookDescription').textContent = description;
@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('bookAuthor').textContent = author;
             document.getElementById('bookVersion').textContent = version;
             document.getElementById('bookCode').textContent = code;
-            document.getElementById('bookImage').src = imageSrc;
 
             // Mostrar el modal
             const bookModal = new bootstrap.Modal(document.getElementById('ModalInfoLibro'));
@@ -41,6 +40,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-
+    document.getElementById('CerrarModalBtn').addEventListener('click', function(){
+        cerrarModalLibros();
+        location.reload();
+    })
 });
 
+function cerrarModalLibros() {
+    var modal = document.getElementById('ModalInfoLibro');
+    var modalInstance = bootstrap.Modal.getOrCreateInstance(modal); // Crea o recupera la instancia
+    if (modalInstance) {
+        modalInstance.hide(); 
+    } else {
+        console.error('El modal no se pudo cerrar');
+    }
+}
