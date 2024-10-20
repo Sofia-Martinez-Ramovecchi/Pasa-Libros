@@ -80,6 +80,7 @@
 /* General */
 body {
     font-family: 'Poppins', sans-serif;
+    
 }
 #headerDiv {
     border: 1px solid rgb(226, 226, 226);
@@ -133,5 +134,10 @@ p {
     font-family: 'Open Sans', sans-serif;
     font-size: 0.9rem;
     color: #666;
+}
+
+
+.animate-margin {
+    transform: translateY(20px); /* en lugar de margin-top en keyframes */
 }
 
