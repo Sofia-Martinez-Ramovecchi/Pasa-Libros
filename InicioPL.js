@@ -55,3 +55,4 @@ function cerrarModalLibros() {
         console.error('El modal no se pudo cerrar');
     }
 }
+
