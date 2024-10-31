@@ -22,13 +22,12 @@ document.addEventListener('DOMContentLoaded',function(){
             limpiarInpts('publicarLibroForm'); 
             cerrarModal('publicarLibroModal');
         }
-   })
+   });
 
     document.querySelectorAll('.btnCancelarModal').forEach(function(button) {
         button.addEventListener('click', function() {
-            let modalID = this.getAttribute('data-modal');  // Obtener el ID del modal desde data-modal
-
-            cerrarModal(modalID);  // Cerrar el modal correspondiente
+            let modalID = this.getAttribute('data-modal');  
+            cerrarModal(modalID); 
             location.reload();
         });
     });
@@ -62,24 +61,31 @@ function ValidarPublicacionNueva(){
 
     if(!validarCampoVacio('tituloLibro') || !ValidarCaracteres('tituloLibro')){
         flag=false;
+        console.log('tituloLibro:' + flag);
     }
     if(!validarCampoVacio('autorLibro') || !ValidarCaracteres('autorLibro') || !sinnumeros('autorLibro')){
         flag=false;
+        console.log('autorLibro:' + flag);
     }
     if(!validarCampoVacio('descripcionLibro')){
         flag=false;
+        console.log('descripcionLibro:'+ flag);
     }
     if(!validarCampoVacio('imagenLibro')){
         flag=false;
+        console.log('imagenLibro:' + flag);
     }
     if(!validarCampoVacio('VersionLibro')){
-
+        flag=false;
+        console.log('VersionLibro'+ flag);
     }
     if(!validarCampoVacio('EditorialLibro')){
-        
+        flag=false;
+        console.log('EditorialLibro:' + flag);
     }
     if(!validarCampoVacio('CodigoInternacional')){
-        
+        flag=false;
+        console.log('CodigoInternacional:' + flag);
     }
    return flag;
 }
@@ -102,14 +108,18 @@ function validarCampoVacio(idCampo) {
     return true;
 }
 function ValidarCaracteres(idcampo){
-    let nombreUsuario = document.getElementById(idcampo).value;
-    let ErrorMensaje = document.getElementById(idcampo);
-    if (nombreUsuario.length < 4) {
-        ErrorMensaje.textContent = "El nombre de usuario debe tener al menos 4 caracteres";
-       return false;
-    } else {
-        ErrorMensaje.textContent = "";
-    }
+    let inputValor = document.getElementById(idcampo).value;
+    let error = document.getElementById(idcampo);
+    
+    let MensajeError = error.nextElementSibling; 
+    error.classList.remove('is-invalid');
+    MensajeError.innerHTML = '';  
+
+    if (inputValor.length < 4) {
+        MensajeError.innerHTML = 'Debe de tener mas de 4 carácteres';
+       error.classList.add('is-invalid');
+        return false;
+    } 
     return true;
 
 }
@@ -155,22 +165,20 @@ function sinnumeros(idcampo) {
     let error = document.getElementById(idcampo);
     let MensajeError = error.nextElementSibling;  // div con 'invalid-feedback'
 
-    // Expresión regular para validar solo letras (incluyendo acentos y espacios)
+    // Expresión validar solo letras (incluyendo acentos y espacios)
     let soloLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
-
-    
     error.classList.remove('is-invalid');
 
-    // Validar si el valor contiene solo letras
-    if (!soloLetras.test(inputValor)) {
-       
+    if (!soloLetras.test(inputValor)) { 
         error.classList.add('is-invalid');
-        MensajeError.textContent = "Solo se permiten letras y espacios.";
-    } else {
-      
+        MensajeError.innerHTML = "Solo se permiten letras y espacios.";
+        return false;
+    } 
+    
         error.classList.remove('is-invalid');
-        MensajeError.textContent = "";
-    }
+        MensajeError.innerHTML = "";
+    
+    return true;
 }
 
 //Actualizar la foto de perfil, Nombre y header
@@ -213,4 +221,6 @@ function limpiarInpts(formId){
   let form = document.getElementById(formId);
   form.reset();  // Resetea el formulario
 }
+
+
 
