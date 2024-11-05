@@ -14,6 +14,18 @@ Route::get('/publicaciones', function () {
     return view('IntercambioDeLibros');
 });
 
+Route::get('/usuarioperfil', function () {
+    return view('UsuarioPerfil');
+});
+
+Route::get('/inicio', function () {
+    return view('InicioPL');
+})->name('inicio');
+
+Route::get('/inicio#categorias', function () {
+    return view('InicioPL');
+})->name('categorias');
+
 Route::post('/publicaciones', [ControllerValidateMessage::class, 'store'])->name('publicaciones.store');
 
 Route::get('/dashboard', function () {
