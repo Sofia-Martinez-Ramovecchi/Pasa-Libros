@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ControllerValidateMessage;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegisterController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -10,12 +12,25 @@ use Laravel\Socialite\Facades\Socialite;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/publicaciones', function () {
     return view('IntercambioDeLibros');
 });
 
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
+
+
 Route::get('/usuarioperfil', function () {
     return view('UsuarioPerfil');
+});
+
+Route::get('/menulogueado', function () {
+    return view('MenuLogueado');
+});
+#IDEA: mapa esta vacio
+Route::get('/mapa', function () {
+    return view('mapa');
 });
 
 Route::get('/inicio', function () {
@@ -33,11 +48,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/perfil', [ProfileController::class, 'mostrar'])->name('perfil.mostrar');
+    Route::patch('/perfil', [ProfileController::class, 'update'])->name('perfil.update');
+    Route::delete('/perfil', [ProfileController::class, 'destroy'])->name('perfil.destroy');
 });
 
+Route::post('/logout', [ProfileController::class, 'logout'])->name('logout');
 Route::get('/auth/redirect', function () {
     return Socialite::driver('google')->redirect();
 })->name('google.redirect');
@@ -69,7 +85,7 @@ Route::get('/auth/callback', function () {
 
     Auth::login($user);
 
-    return redirect()->route('profile.edit');
+    return redirect()->route('perfil');
 });
 
 
