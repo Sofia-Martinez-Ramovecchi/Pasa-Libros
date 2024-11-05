@@ -37,17 +37,17 @@
                     </div>
                 </div>
             </div><br>
-        
+
             <div class="container-fluid text-center" id="DivFoto">
                 <img id="FotoPerfil" src="https://cdn-icons-png.flaticon.com/512/3135/3135823.png" alt="Foto de perfil" class="img-fluid rounded-circle perfil-img">
             </div>
-        
+
             <div id="descripcion" class="col text-center">
                 <h3 id="nombrePerfil">Mica</h3>
                 <p>Se unió en --- de ---</p>
             </div><br>
         </header><br>
-    
+
     <!--------------BARRA RESEÑAS/PUBLICACIONES-------------->
             <div id="ContenedorPublicaciones">
                 <section>
@@ -130,7 +130,7 @@
             </footer>
     </div>
 
-    <?php require __DIR__.'/../includes/modales.php'; ?>
-    
+    <?php require __DIR__ . '/../includes/modales.blade.php'; ?>
+
 </body>
 </html>
