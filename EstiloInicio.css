@@ -1,0 +1,143 @@
+/* Para pantallas pequeñas (celulares) */
+@media (max-width: 768px) {
+    #headerDiv {
+        flex-direction: column;
+        text-align: center;
+    }
+    #search-bar {
+        max-width: 100%;
+        margin-bottom: 15px; /* Espacio entre el logo y el buscador en pantallas pequeñas */
+    }
+    .book-item {
+        padding: 15px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.08); /* Sombra ligera */
+        width: 90%;
+    }
+    #Logo {
+        max-width: 100%;
+    }
+    .auth-buttons {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .auth-buttons button {
+        margin: 5px 0; /* Espacio entre los botones */
+    }
+    .auth-buttons a {
+        margin: 5px 0;
+    }
+
+    .book-list .row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Tres columnas por fila */
+        gap: 10px; /* Ajusta el espacio entre los elementos */
+    }
+
+    button.CategoriaBtn {
+        font-size: 1.2rem; /* Tamaño adecuado para pantallas pequeñas */
+        padding: 10px;
+        width: 100%; /* Los botones siguen ocupando todo el ancho de la celda */
+    }
+ 
+    .carousel-controls {
+        margin: 10px 0;
+    }
+}
+
+/* Para pantallas grandes (14 pulgadas en adelante) */
+@media (min-width: 1200px) {
+    .book-item {
+        padding: 15px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.08); /* Sombra ligera */
+        width: 110%;
+    }
+    #search-bar {
+        max-width: 500px;
+    }
+    .carousel-item .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px; /* Ajuste opcional */
+    }
+
+    .col-md-3 {
+        max-width: 23%; /* Ajusta el ancho para que entren 4 libros perfectamente */
+    }
+    .book-list .row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* Cuatro botones por fila */
+        gap: 20px; /* Espacio entre botones */
+    }
+
+    button.CategoriaBtn {
+        font-size: 1.2rem; /* Tamaño adecuado para pantallas grandes */
+        padding: 15px;
+        width: 100%; /* Los botones ocupan todo el ancho de la celda */
+    }
+}
+
+/* General */
+body {
+    font-family: 'Poppins', sans-serif;
+    
+}
+#headerDiv {
+    border: 1px solid rgb(226, 226, 226);
+}
+.auth-buttons {
+    text-align: center;
+}
+.book-item {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.book-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15)
+}
+.carousel-control-prev, .carousel-control-next {
+    height: 35px;
+    width: 35px;
+    margin-top: 120px;
+    background-color: #a5b0bc; /* Color de fondo azul */
+    border-radius: 50%; /* Forma circular */
+}
+.carousel-control-prev-icon:hover, .carousel-control-next-icon:hover {
+    background-color: #beddfd;
+}
+
+/*  */
+.book-list .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+button.CategoriaBtn{
+    width: 100%; 
+    margin-bottom: 10px; /* Espacio entre los botones */
+    border-radius: 5px; 
+}
+
+/*Estilo tipográfico*/
+h3 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    color: #333;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+
+.animate-margin {
+    transform: translateY(20px); /* en lugar de margin-top en keyframes */
+}
+
