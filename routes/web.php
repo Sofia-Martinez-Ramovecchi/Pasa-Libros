@@ -49,7 +49,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/perfil', [ProfileController::class, 'mostrar'])->name('perfil.mostrar');
-    Route::patch('/perfil', [ProfileController::class, 'update'])->name('perfil.update');
+    Route::patch('/perfil', [ProfileController::class, 'patch'])->name('perfil.patch');
     Route::delete('/perfil', [ProfileController::class, 'destroy'])->name('perfil.destroy');
 });
 
