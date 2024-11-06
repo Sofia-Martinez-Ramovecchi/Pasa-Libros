@@ -14,12 +14,7 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    /*public function edit(Request $request): View
-    {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
-    }*/
+
     public function mostrar(Request $request): View{
         return view('Perfil',[
             'user'=>$request->user(),
@@ -28,18 +23,44 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function patch(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $validatedData = $request->validated();
 
+        // Solo actualizar la contraseña si se proporciona
+        if (!empty($validatedData['password'])) {
+            $request->user()->password = bcrypt($validatedData['password']);
+        }
+
+        // Manejar la imagen de perfil si se proporciona
+        if ($request->hasFile('profileImage')) {
+            $path = $request->file('profileImage')->store('profile_images', 'public');
+            $validatedData['profile_image'] = $path;
+        }
+
+        // Actualizar el nombre de usuario
+        if (!empty($validatedData['name'])) {
+            $request->user()->name = $validatedData['name'];
+        }
+
+        // Actualizar otros datos del usuario
+        $request->user()->fill($validatedData);
+
+        // Si el email ha cambiado, invalidar la verificación
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
 
+        // Guardar los cambios en la base de datos
         $request->user()->save();
 
-        return Redirect::route('perfil')->with('status', 'profile-updated');
+        // Redirigir con un mensaje de éxito
+        return Redirect::route('perfil.mostrar')->with('status', 'success');
     }
+
+
+
+
 
     /**
      * Delete the user's account.

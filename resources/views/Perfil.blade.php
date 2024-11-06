@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Perfil</title>
-    <link rel="stylesheet" href="../css/EstiloPerfil.css">
+    <link rel="stylesheet" href="/resources/css/EstiloPerfil.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script defer src="../js/EditarPerfil.js"></script>
+    <script defer src="/resources/js/EditarPerfil.js"></script>
 </head>
 <body>
 
@@ -256,8 +256,6 @@
     </div>
 
 <!-- Modal para editar perfil con validaciones -->
-    <!-- Modal para editar perfil con validaciones -->
-    <!-- Modal para editar perfil con validaciones -->
     <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -266,14 +264,14 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="EditarForm" method="POST" action="{{ route('perfil.update') }}">
+                    <form id="EditarForm" method="POST" action="{{ route('perfil.patch') }}">
                         @csrf
                         @method('PATCH')
                         <!-- Nombre de Usuario -->
                         <div class="mb-3">
-                            <label for="username" class="form-label">Nombre de usuario</label>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Nombre de usuario (opcional)" value="{{ old('username', auth()->user()->username) }}">
-                            <small class="text-danger" id="usernameError"></small>
+                            <label for="name" class="form-label">Nombre de usuario</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Nombre de usuario (opcional)" value="{{ old('name', auth()->user()->name) }}">
+                            <small class="text-danger" id="nameError"></small>
                         </div>
 
                         <!-- Email -->
@@ -286,7 +284,7 @@
                         <!-- Contraseña -->
                         <div class="mb-3">
                             <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña (opcional)" autocomplete="current-password">
+                            <input type="password" class="form-control" id="passwordEdit" name="password" placeholder="Contraseña (opcional)" autocomplete="current-password">
                             <small class="text-danger" id="passwordError"></small>
                         </div>
 

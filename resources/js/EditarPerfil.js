@@ -1,16 +1,16 @@
 
 document.addEventListener('DOMContentLoaded',function(){
-   
+
    document.getElementById('btnGuardarCambiosPerfil').addEventListener('click', function(event){
         event.preventDefault();
-        
+
             if (ValidarFormEditar()) {
-            
+
                 document.getElementById('headerColorInput').addEventListener('input', cambiarHeader());
                 actualizarFotoPerfil();  //
                 actualizarNombreUsuario('username');  //
                 cerrarModal('editProfileModal');
-                limpiarInpts('editarPerfilForm');  
+                limpiarInpts('editarPerfilForm');
             }
     });
 
@@ -19,22 +19,22 @@ document.addEventListener('DOMContentLoaded',function(){
         let bandera=ValidarPublicacionNueva();
         console.log(bandera);
         if(bandera){
-            limpiarInpts('publicarLibroForm'); 
+            limpiarInpts('publicarLibroForm');
             cerrarModal('publicarLibroModal');
         }
    });
 
     document.querySelectorAll('.btnCancelarModal').forEach(function(button) {
         button.addEventListener('click', function() {
-            let modalID = this.getAttribute('data-modal');  
-            cerrarModal(modalID); 
+            let modalID = this.getAttribute('data-modal');
+            cerrarModal(modalID);
             location.reload();
         });
     });
 
 });
 
-///// -------- Validaciones form Publicar y Editar 
+///// -------- Validaciones form Publicar y Editar
 function ValidarFormEditar(){
     let flag=true;
 
@@ -110,16 +110,16 @@ function validarCampoVacio(idCampo) {
 function ValidarCaracteres(idcampo){
     let inputValor = document.getElementById(idcampo).value;
     let error = document.getElementById(idcampo);
-    
-    let MensajeError = error.nextElementSibling; 
+
+    let MensajeError = error.nextElementSibling;
     error.classList.remove('is-invalid');
-    MensajeError.innerHTML = '';  
+    MensajeError.innerHTML = '';
 
     if (inputValor.length < 4) {
         MensajeError.innerHTML = 'Debe de tener mas de 4 carácteres';
        error.classList.add('is-invalid');
         return false;
-    } 
+    }
     return true;
 
 }
@@ -148,7 +148,7 @@ function validarClave(){
     return true;
 }
 function validarFoto(){
-    
+
     // Validación de la imagen de perfil
     const profileImage = document.getElementById("profileImage").files[0];
     const imageError = document.getElementById("imageError");
@@ -169,39 +169,18 @@ function sinnumeros(idcampo) {
     let soloLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
     error.classList.remove('is-invalid');
 
-    if (!soloLetras.test(inputValor)) { 
+    if (!soloLetras.test(inputValor)) {
         error.classList.add('is-invalid');
         MensajeError.innerHTML = "Solo se permiten letras y espacios.";
         return false;
-    } 
-    
+    }
+
         error.classList.remove('is-invalid');
         MensajeError.innerHTML = "";
-    
+
     return true;
 }
 
-//Actualizar la foto de perfil, Nombre y header
-function actualizarFotoPerfil() {
-    const profileImageInput = document.getElementById('profileImage');
-    const profileImage = document.querySelector('.perfil-img');  // Imagen actual en la página
-
-    if (profileImageInput.files && profileImageInput.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            profileImage.src = e.target.result;  // Cambia la imagen de perfil al cargar la nueva
-        }
-        reader.readAsDataURL(profileImageInput.files[0]);
-    }
-}
-function actualizarNombreUsuario(idcampo) {
-    let NuevoNombre = document.getElementById(idcampo).value.trim();  // Toma el valor del input del nombre de usuario
-    let nombreviejo = document.getElementById('nombrePerfil');  // El h3 donde aparece el nombre de usuario
-
-    if (nombreviejo !== '') {
-        nombreviejo.textContent = NuevoNombre;  // Actualiza el texto del h3 con el nuevo nombre
-    }
-}
 function cambiarHeader() {
     let headerColor = document.getElementById('headerColorInput').value;
     let headerDiv = document.getElementById('headerDiv');
@@ -212,7 +191,7 @@ function cambiarHeader() {
 //// funciones de los forms
 function cerrarModal(idcampo){
     // Cierra el modal después de confirmar
-    const modal = bootstrap.Modal.getInstance(document.getElementById(idcampo)); 
+    const modal = bootstrap.Modal.getInstance(document.getElementById(idcampo));
     modal.hide(); // Cierra el modal
 
 }
@@ -220,6 +199,29 @@ function limpiarInpts(formId){
   // Limpia todos los campos del formulario
   let form = document.getElementById(formId);
   form.reset();  // Resetea el formulario
+}
+
+function actualizarNombreUsuario(idcampo) {
+    let NuevoNombre = document.getElementById(idcampo).value.trim();
+    let nombreviejo = document.getElementById('username');
+
+    if (NuevoNombre !== '') {
+        nombreviejo.textContent = NuevoNombre;
+    }
+}
+
+
+function actualizarFotoPerfil() {
+    const profileImageInput = document.getElementById('profileImage');
+    const profileImage = document.querySelector('.perfil-img');
+
+    if (profileImageInput.files && profileImageInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            profileImage.src = e.target.result;
+        }
+        reader.readAsDataURL(profileImageInput.files[0]);
+    }
 }
 
 
