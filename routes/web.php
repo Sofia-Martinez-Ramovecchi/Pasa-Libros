@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/usuarios', [AdministradorController::class, 'index']);
 Route::get('/usuarios/create', [AdministradorController::class, 'create']);
 Route::delete('/usuarios/{usuario}', [AdministradorController::class, 'destroy'])->name('usuarios.destroy');
+Route::get('/usuarios/{usuario}/edit', [AdministradorController::class, 'edit'])->name('usuarios.edit');
+Route::patch('/usuarios/{usuario}', [AdministradorController::class, 'update'])->name('usuarios.update');
 
 
 Route::post('/publicaciones', [ControllerValidateMessage::class, 'store'])->name('publicaciones.store');

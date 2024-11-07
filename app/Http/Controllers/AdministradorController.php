@@ -19,16 +19,22 @@ class AdministradorController extends Controller
 
     public function destroy(Usuario $usuario){
         $usuario->delete();
+        return redirect('/usuarios')->with('success', 'Usuario eliminado correctamente.');
     }
 
-    /*public function edit(){}
+    public function edit($id){
+        $usuario = Usuario::findOrFail($id);
+        return view('usuarios.edit', compact('usuario'));
 
-    public function destroy($id)
-    {
-    $usuario = Usuario::findOrFail($id);
-    $usuario->delete();
+    }
 
-    return redirect('/usuarios')->with('success', 'Usuario eliminado correctamente.');
-    }*/
+    public function update(Request $request, $id){
+        $datosUsuario=request()->except(['_token', '_method']);
+        Usuario::where('id_usuario','=',$id)->update($datosUsuario);
+
+        $usuario = Usuario::findOrFail($id);
+        return view('usuarios.edit', compact('usuario'));
+    }
+
 
 }
