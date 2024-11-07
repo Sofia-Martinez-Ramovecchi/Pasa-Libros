@@ -7,4 +7,5 @@ edit
 </br>
 
 <button type="submit">Guardar></button>
+<a href="{{route('usuarios.index')}}">Regresar</a>
 </form>

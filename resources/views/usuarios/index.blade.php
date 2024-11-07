@@ -1,4 +1,14 @@
 index
+
+@extends('layouts.app')
+
+@section('content')
+
+<div class="container">
+
+@if(Session::has('Mensaje'))
+    {{ Session::get('Mensaje') }}
+@endif
 <table class="table table-light">
     <thead class="thead-light">
         <tr>
@@ -30,3 +40,5 @@ index
         @endforeach
     </tbody>
 </table>
+</div>
+@endsection
