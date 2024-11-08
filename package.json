@@ -1,0 +1,18 @@
+{
+  "name": "pasa-libros",
+  "version": "1.0.0",
+  "description": "Laravel Project",
+  "main": "vite.config.js",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "laravel-vite-plugin": "^1.0.5",
+    "vite": "^5.4.10"
+  },
+  "type": "module",
+  "devDependencies": {
+    "sass-embedded": "^1.80.6"
+  }
+}

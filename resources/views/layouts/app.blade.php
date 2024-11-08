@@ -31,6 +31,11 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
 
+                        <li class="nav-item">
+                            <a style="display: inline" class="nav-link" href="{{ route('usuarios.index') }}">{{ __('Administrador de usuarios') }}</a>
+                            <a style="display: inline" class="nav-link" href="{{ route('usuarios.index') }}">{{ __('Ver publicaciones reportadas') }}</a>
+                        </li>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->

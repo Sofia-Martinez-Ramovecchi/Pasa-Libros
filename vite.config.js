@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
+// Especificar la extensión de los archivos .mjs para manejar correctamente ESM
 export default defineConfig({
     plugins: [
         laravel({
@@ -11,4 +12,10 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    // Asegúrate de especificar una extensión para los módulos ESM
+    resolve: {
+        alias: {
+            '@': '/resources/js', // Puedes modificar esto si es necesario
+        },
+    },
 });
