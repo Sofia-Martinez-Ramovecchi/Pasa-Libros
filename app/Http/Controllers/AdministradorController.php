@@ -4,44 +4,71 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use App\Models\RolUsuario;
+use App\Models\PublicacionReporte;
 
 class AdministradorController extends Controller
 {
-    //
+    /*
     public function index(){
         $datos['usuarios']=Usuario::paginate(10);
         return view('usuarios.index', $datos);
+    }*/
+
+    public function index(Request $request)
+    {
+        $search = $request->input('search'); // Obtén el término de búsqueda
+
+        // Obtener los usuarios con las relaciones 'rol_usuario' y 'estado_cuentum'
+        $usuarios = Usuario::when($search, function ($query, $search) {
+            return $query->where('nombre_usuario', 'like', "%{$search}%");
+        })->with(['rol_usuario', 'estado_cuentum']) // Cargar las relaciones
+            ->paginate(10); // Filtra y pagina los resultados
+
+        /*$usuarios = Usuario::when($search, function ($query, $search) {
+        return $query->where('nombre_usuario', 'like', "%{$search}%");
+    })->paginate(10); // Filtra y pagina los resultados*/
+
+        return view('usuarios.index', ['usuarios' => $usuarios]);
     }
 
-    public function create(){
+
+    public function create()
+    {
         return view('usuarios.create');
     }
 
-    public function destroy(Usuario $usuario){
+    public function destroy(Usuario $usuario)
+    {
         $usuario->delete();
         return redirect('usuarios')->with('Mensaje', 'Usuario eliminado correctamente.');
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
 
         $usuario = Usuario::findOrFail($id);
-        return view('usuarios.edit', compact('usuario'));
-
+        $roles = RolUsuario::all(); // Obtener todos los roles disponibles
+        return view('usuarios.edit', compact('usuario', 'roles'));
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
 
-        $campos=[
-            'nombre_usuario' => 'required|string|max:50' 
+        $campos = [
+            'nombre_usuario' => 'required|string|max:50|min:2',
+            'password' => 'required|string|max:50|min:6',
+            'email' => 'required|string|max:50|min:6',
+            'id_rol' => 'required|exists:rol_usuarios,id'
         ];
 
-        $Mensaje=["required"=>'El :attribute es requerido'];
+        $Mensaje = ["required" => 'El :attribute es requerido'];
 
-        $this->validate($request,$campos,$Mensaje);
+        $this->validate($request, $campos, $Mensaje);
 
 
-        $datosUsuario=request()->except(['_token', '_method']);
-        Usuario::where('id_usuario','=',$id)->update($datosUsuario);
+        $datosUsuario = request()->except(['_token', '_method']);
+        Usuario::where('id_usuario', '=', $id)->update($datosUsuario);
 
         //$usuario = Usuario::findOrFail($id);
         //return view('usuarios.edit', compact('usuario'));
@@ -49,5 +76,28 @@ class AdministradorController extends Controller
         return redirect('usuarios')->with('Mensaje', 'Usuario modificado con exito');
     }
 
+    public function suspender($id)
+    {
+        $usuario = Usuario::findOrFail($id);
+        $usuario->id_estado_cuenta = 2; // Cambiar el estado a "suspendido"
+        $usuario->save();
 
+        // Redirigir con un mensaje de éxito
+        return redirect()->route('usuarios.index')->with('Mensaje', 'Usuario suspendido correctamente.');
+    }
+
+    public function verPerfil($id)
+    {
+        $usuario = Usuario::findOrFail($id); // Encuentra al usuario por su ID
+        return view('usuarios.perfil', compact('usuario')); // Pasa el usuario a la vista
+    }
+
+    public function publicacionesReportadas()
+{
+    // Obtener todas las publicaciones reportadas con las relaciones correspondientes
+    $publicacionesReportadas = PublicacionReporte::with(['publicacion', 'reporte', 'usuario'])->get();
+
+    // Pasar las publicaciones reportadas a la vista
+    return view('publicaciones.reportadas', compact('publicacionesReportadas'));
+}
 }
