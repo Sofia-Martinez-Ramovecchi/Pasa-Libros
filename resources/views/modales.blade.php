@@ -2,94 +2,101 @@
 @include('mapa')
 <!--Vista Perfil -->
 
-    <!--Modal para publicar libro-->
-        <div class="modal fade" id="publicarLibroModal" tabindex="-1" aria-labelledby="publicarLibroLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="publicarLibroLabel">Publicar un libro</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="publicarLibroForm">
-                            <div class="mb-4">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="tituloLibro" class="form-label">Título del Libro</label>
-                                            <input type="text" class="form-control" id="tituloLibro" placeholder="Escribe el título del libro" required>
-                                            <div class="invalid-feedback">Por favor, ingresa un título.</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="autorLibro" class="form-label">Autor</label>
-                                            <input type="text" class="form-control" id="autorLibro" placeholder="Escribe el autor del libro" required>
-                                            <div class="invalid-feedback">Por favor, ingresa el autor.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="EditorialLibro" class="form-label">Editorial</label>
-                                            <input type="text" class="form-control" name="EditorialLibro" id="EditorialLibro" placeholder="Indique la editorial del libro" required>
-                                            <div class="invalid-feedback">Por favor, ingresa la editorial.</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="VersionLibro" class="form-label">Versión</label>
-                                            <input type="text" class="form-control" name="VersionLibro" id="VersionLibro" placeholder="Escriba la versión del libro" required>
-                                            <div class="invalid-feedback">Por favor, ingresa la versión.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label for="CodigoInternacional" class="form-label">Código Internacional</label>
-                                            <input type="text" class="form-control" name="CodigoInternacional" id="CodigoInternacional" placeholder="Escribe el Código Internacional" required>
-                                            <div class="invalid-feedback">Por favor, ingresa el código internacional.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="imagenLibro" class="form-label">Subir portada del libro</label>
-                                            <input class="form-control" type="file" id="imagenLibro" required>
-                                            <div class="invalid-feedback">Por favor, sube la portada.</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="imagenLibroContraportada" class="form-label">Contraportada (Opcional)</label>
-                                            <input class="form-control" type="file" id="imagenLibroContraportada">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label for="descripcionLibro" class="form-label">Descripción</label>
-                                            <textarea class="form-control" id="descripcionLibro" rows="3" placeholder="Escribe una breve descripción del libro" required></textarea>
-                                            <div class="invalid-feedback">Por favor, ingresa una descripción.</div>
-                                        </div>
-                                    </div>
+<!-- Modal para publicar libro -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+<div class="modal fade" id="publicarLibroModalInicio" tabindex="-1" aria-labelledby="publicarLibroModalInicioLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Publicar un libro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="publicarLibroForm2" enctype="multipart/form-data" method="POST" action="{{ route('libros.patch') }}">
+                    @csrf
+                    @method('PATCH')
+                    <div class="mb-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="tituloLibro2" class="form-label">Título del Libro</label>
+                                    <input type="text" class="form-control" id="tituloLibro2" name="title" placeholder="Escribe el título del libro" required>
+                                    <div class="invalid-feedback">Por favor, ingresa un título.</div>
                                 </div>
                             </div>
-                        </form>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="autorLibro2" class="form-label">Autor</label>
+                                    <input type="text" class="form-control" id="autorLibro2" name="author" placeholder="Escribe el autor del libro" required>
+                                    <div class="invalid-feedback">Por favor, ingresa el autor.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="EditorialLibro2" class="form-label">Editorial</label>
+                                    <input type="text" class="form-control" id="EditorialLibro2" name="genre" placeholder="Indique la editorial del libro" required>
+                                    <div class="invalid-feedback">Por favor, ingresa la editorial.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="VersionLibro2" class="form-label">Versión</label>
+                                    <input type="text" class="form-control" id="VersionLibro2" name="condition" placeholder="Escriba la versión del libro" required>
+                                    <div class="invalid-feedback">Por favor, ingresa la versión.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="InternacionalCodigo2" class="form-label">Código Internacional</label>
+                                    <input type="text" class="form-control" id="InternacionalCodigo2" name="description" placeholder="Escribe el Código Internacional" required>
+                                    <div class="invalid-feedback">Por favor, ingresa el código internacional.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="imagenLibro2" class="form-label">Subir portada del libro</label>
+                                    <input class="form-control" type="file" id="imagenLibro2" name="photos[]" multiple required>
+                                    <div class="invalid-feedback">Por favor, sube la portada.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="LibroContraportada2" class="form-label">Contraportada (Opcional)</label>
+                                    <input class="form-control" type="file" id="LibroContraportada2" name="photos[]">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="descripcionLibro2" class="form-label">Descripción</label>
+                                    <textarea class="form-control" id="descripcionLibro2" name="description" rows="3" placeholder="Escribe una breve descripción del libro" required></textarea>
+                                    <div class="invalid-feedback">Por favor, ingresa una descripción.</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btnCancelarModal" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" id="BtnPublicarLibro">Publicar</button>
-                    </div>
-                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cancelarLibro2" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="BtnPublicarLibro2">Publicar</button>
             </div>
         </div>
+    </div>
+</div>
 
-    <!-- Modal para editar perfil  -->
+<!-- Incluir el archivo JavaScript -->
+<script src="{{ asset('js/publicarLibro.js') }}"></script>
+
+<!-- Modal para editar perfil  -->
         <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
             <div class="modal-dialog">
             <div class="modal-content">
@@ -392,92 +399,6 @@
             </div>
         </div>
 
-    <!--Modal para publicar libro-->
-        <div class="modal fade" id="publicarLibroModalInicio" tabindex="-1" aria-labelledby="publicarLibroModalInicioLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Publicar un libro</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="publicarLibroForm2">
-                            <div class="mb-4">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="tituloLibro2" class="form-label">Título del Libro</label>
-                                            <input type="text" class="form-control" id="tituloLibro2" placeholder="Escribe el título del libro" required>
-                                            <div class="invalid-feedback">Por favor, ingresa un título.</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="autorLibro2" class="form-label">Autor</label>
-                                            <input type="text" class="form-control" id="autorLibro2" placeholder="Escribe el autor del libro" required>
-                                            <div class="invalid-feedback">Por favor, ingresa el autor.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="EditorialLibro2" class="form-label">Editorial</label>
-                                            <input type="text" class="form-control" name="EditorialLibro2" id="EditorialLibro2" placeholder="Indique la editorial del libro" required>
-                                            <div class="invalid-feedback">Por favor, ingresa la editorial.</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="VersionLibro2" class="form-label">Versión</label>
-                                            <input type="text" class="form-control" name="VersionLibro2" id="VersionLibro2" placeholder="Escriba la versión del libro" required>
-                                            <div class="invalid-feedback">Por favor, ingresa la versión.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label for="InternacionalCodigo2" class="form-label">Código Internacional</label>
-                                            <input type="text" class="form-control" name="InternacionalCodigo2" id="InternacionalCodigo2" placeholder="Escribe el Código Internacional" required>
-                                            <div class="invalid-feedback">Por favor, ingresa el código internacional.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="imagenLibro2" class="form-label">Subir portada del libro</label>
-                                            <input class="form-control" type="file" id="imagenLibro2" required>
-                                            <div class="invalid-feedback">Por favor, sube la portada.</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="LibroContraportada2" class="form-label">Contraportada (Opcional)</label>
-                                            <input class="form-control" type="file" id="LibroContraportada2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label for="descripcionLibro2" class="form-label">Descripción</label>
-                                            <textarea class="form-control" id="descripcionLibro2" rows="3" placeholder="Escribe una breve descripción del libro" required></textarea>
-                                            <div class="invalid-feedback">Por favor, ingresa una descripción.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" id="cancelarLibro2" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" id="BtnPublicarLibro2">Publicar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
 <!--Modales de Inicio -->

@@ -1,0 +1,99 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.perfil-img {
+    width: 30vw; /* Ajusta el ancho de la imagen al 30% del ancho de la pantalla */
+    height: auto; /* Mantiene la proporción de la imagen */
+    object-fit: cover; /* Mantiene la proporción de la imagen */
+    border-radius: 50%; /* Hace que la imagen sea circular */
+    border: 2px solid #ddd; /* Agrega un borde */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Agrega una sombra */
+    max-width: 100px; /* Limita el tamaño máximo de la imagen */
+    max-height: 100px; /* Limita el tamaño máximo de la imagen */
+}
+
+header {
+    background: linear-gradient(90deg, rgb(255, 142, 77) 0%, rgb(248, 123, 104) 100%);
+    height: 10vh; /* 10% de la altura de la ventana */
+    width: 100%; /* Ocupa el 100% del ancho de la pantalla */
+    overflow: inherit;
+    padding: 0; /* Elimina el padding */
+}
+
+.dynamic-header .container-fluid {
+    padding: 0; /* Elimina el padding */
+}
+
+.btn-outline-dark {
+    margin-top: 0.2rem; /* Ajusta el margen superior */
+    padding-top: 0.5rem; /* Ajusta el padding interno del botón */
+    padding-left: 1rem; /* Ajusta el padding interno del botón */
+    font-size: 1rem; /* Ajusta el tamaño de la fuente */
+}
+
+.tab-content .card {
+    border: 1px solid #dee2e6;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#descripcion {
+    margin-left: 3%; /* Ajusta el margen izquierdo */
+}
+
+#ContenedorPublicaciones {
+    min-height: 700px; /* Ajusta la altura mínima */
+}
+
+/* Media Queries para diferentes tamaños de pantalla */
+@media (max-width: 1200px) {
+    #descripcion {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .container-xl {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    #ContenedorPublicaciones {
+        min-height: 500px;
+    }
+}
+
+@media (max-width: 576px) {
+    .nav-tabs {
+        flex-direction: column;
+    }
+
+    .tab-content {
+        padding: 10px;
+    }
+}
+
+#Division {
+    border: 1px solid rgb(168, 167, 167);
+}
+
+div.EditarEliminar {
+    top: 10px;
+    right: 10px;
+}
+
+.profile-name {
+    font-size: 2.5em; /* Tamaño de la fuente */
+    font-weight: bold; /* Negrita */
+    color: #333; /* Color del texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra del texto */
+    font-family: 'Arial', sans-serif; /* Fuente */
+    margin-bottom: 10px; /* Espacio inferior */
+}
+
+.dropdown-menu {
+    z-index: 1000; /* Asegura que el dropdown esté por encima de otros elementos */
+}

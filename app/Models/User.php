@@ -19,6 +19,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_photo', // Agrega este campo
+
         'google_id',
         'google_token',
         'google_refresh_token',

@@ -2,42 +2,77 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookUpdateRequest;
 use App\Models\Book;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::with('user')->latest()->paginate(20);
+        $books = Book::with('book')->latest()->paginate(20);
         return response()->json($books);
     }
 
-    public function store(Request $request)
+    public function patch(BookUpdateRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'title' => 'required|max:255',
-            'author' => 'required|max:255',
-            'genre' => 'required|max:100',
-            'condition' => 'required|in:new,used',
-            'description' => 'required',
-            'photos' => 'required|array|min:1',
-            'photos.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
+        $validatedDataBook = $request->validated();
 
-        $book = new Book($validated);
-        $book->user_id = Auth::id();
-        $book->save();
+        if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->store('photo', 'public');
+            $validatedDataBook['photo'] = $path;
+        }
+        if ($request->hasFile('photoC')) {
+            $path = $request->file('photoC')->store('photoC', 'public');
+            $validatedDataBook['photoC'] = $path;
+        }
 
-        // Manejar la subida de fotos aquí
+        if (!empty($validatedDataBook['tituloLibro'])) {
+            $request->book()->tituloLibro = $validatedDataBook['tituloLibro'];
+        }
 
-        return response()->json($book, 201);
+        if (!empty($validatedDataBook['autor'])) {
+            $request->book()->name = $validatedDataBook['autor'];
+        }
+
+        if (!empty($validatedDataBook['editorialLibro'])) {
+            $request->book()->name = $validatedDataBook['editorialLibro'];
+        }
+
+        if (!empty($validatedDataBook['editorialLibro'])) {
+            $request->book()->name = $validatedDataBook['editorialLibro'];
+        }
+
+        if (!empty($validatedDataBook['versionLibro'])) {
+            $request->book()->name = $validatedDataBook['versionLibro'];
+        }
+
+        if (!empty($validatedDataBook['codigoInternacional'])) {
+            $request->book()->name = $validatedDataBook['codigoInternacional'];
+        }
+
+        if (!empty($validatedDataBook['descripcionLibro'])) {
+            $request->book()->name = $validatedDataBook['descripcionLibro'];
+        }
+
+
+
+        // Actualizar otros datos del libro
+        $request->book()->fill($validatedDataBook);
+
+        // Guardar los cambios en la base de datos
+        $request->book()->save();
+
+        // Redirigir con un mensaje de éxito
+        return Redirect::route('perfil.mostrar')->with('status', 'success');
     }
 
     public function show(Book $book)
     {
-        return response()->json($book->load('user'));
+        return response()->json($book->load('book'));
     }
 
     public function update(Request $request, Book $book)
@@ -58,7 +93,7 @@ class BookController extends Controller
 
         // Manejar la actualización de fotos aquí
 
-        return response()->json($book);
+        return Redirect::route('perfil.mostrar')->with('status', 'success');
     }
 
     public function destroy(Book $book)
@@ -87,12 +122,12 @@ class BookController extends Controller
         }
 
         if ($request->has('location')) {
-            $query->whereHas('user', function ($q) use ($request) {
+            $query->whereHas('book', function ($q) use ($request) {
                 $q->where('location', 'like', '%' . $request->input('location') . '%');
             });
         }
 
-        $books = $query->with('user')->paginate(20);
+        $books = $query->with('book')->paginate(20);
 
         return response()->json($books);
     }

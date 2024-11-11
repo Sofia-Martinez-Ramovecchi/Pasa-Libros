@@ -27,7 +27,7 @@ return [
 
     'path' => env('SESSION_PATH', '/'),
 
-    'domain' => env('SESSION_DOMAIN', null),
+    'domain' => env('SESSION_DOMAIN', 'localhost'),
 
     'secure' => env('SESSION_SECURE_COOKIE', false),
 

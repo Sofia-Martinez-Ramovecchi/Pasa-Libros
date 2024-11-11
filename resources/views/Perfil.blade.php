@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Perfil</title>
-    <link rel="stylesheet" href="/resources/css/EstiloPerfil.css">
+    <link rel="stylesheet" href="{{ asset('css/EstiloPerfil.css') }}">
+    <script defer src="{{ asset('js/EditarPerfil.js') }}"></script>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script defer src="/resources/js/EditarPerfil.js"></script>
 </head>
 <body>
 
@@ -15,40 +18,34 @@
 
         <!---------- CABEZERA PAGINA ----------------->
         <header>
-            <div id="headerDiv" class="dynamic-header">
-                <div class="container-fluid p-5 text-white d-flex flex-column flex-md-row justify-content-between align-items-center">
-                    <div class="col-md-2 text-center text-md-end ms-auto">
-                        <div class="dropdown">
-                            <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                Mi Perfil
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                                <li>
-                                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#editProfileModal">Editar Perfil</button>
-                                </li>
-                                <li>
-                                    <button class="dropdown-item" type="button" onclick="document.getElementById('logout-form').submit();">Cerrar Sesión</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
-                                        Eliminar Cuenta
-                                    </button>                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div><br>
-
-            <div class="container-fluid text-center" id="DivFoto">
-                <img id="FotoPerfil" src="https://cdn-icons-png.flaticon.com/512/3135/3135823.png" alt="Foto de perfil" class="img-fluid rounded-circle perfil-img">
+            <div class="dropdown">
+                <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    Mi Perfil
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                    <li>
+                        <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#editProfileModal">Editar Perfil</button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item" type="button" onclick="document.getElementById('logout-form').submit();">Cerrar Sesión</button>
+                    </li>
+                    <li>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                            Eliminar Cuenta
+                        </button>                                </li>
+                </ul>
             </div>
+        </header>
 
-            <div id="descripcion" class="col text-center">
-                <div>{{ Auth::user()->name }}</div>
+        <div class="container-fluid text-center" id="DivFoto">
+            <img id="FotoPerfil" src="{{ asset('storage/' . Auth::user()->profile_photo) }}" alt="Foto de perfil" class="img-fluid rounded-circle perfil-img">
+        </div>
 
-                <p>Se unió en --- de ---</p>
-            </div><br>
-        </header><br>
+
+        <div id="descripcion" class="col text-center">
+            <h1 class="profile-name">{{ Auth::user()->name }}</h1>
+            <p>Se unió en --- de ---</p>
+        </div>
 
         <!-- Formulario de Cierre de Sesión -->
         <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
@@ -89,7 +86,7 @@
     <!---------------- PUBLICAR LIBRO  ------------------>
                             <div class="card my-3">
                                 <div class="card-body">
-                                <button type="button" class="btn btn-light w-100 text-start" data-bs-toggle="modal" data-bs-target="#publicarLibroModal">
+                                <button type="button" class="btn btn-light w-100 text-start" data-bs-toggle="modal" data-bs-target="#publicarLibroModalInicio">
                                     ¿Qué libro quieres compartir hoy?
                                 </button>
                                 </div>
@@ -153,11 +150,10 @@
         <!----------------- FOOTER  ------------------>
             <footer class="bg-dark text-white text-center py-4">
                 <div class="container p-4">
-                    <!-- Sección de redes sociales -->
+
                     <section class="mb-4">
-                        <a href="InicioPL.html" class="btn btn-outline-light btn-floating m-1" role="button">Inicio</a>
-                        <a href="#!" class="btn btn-outline-light btn-floating m-1" role="button">Categorías</a>
-                        <a href="#!" class="btn btn-outline-light btn-floating m-1" role="button"><i class="bi bi-instagram"></i></a>
+                        <a href="{{ route('inicio') }}" class="btn btn-outline-light btn-floating m-1" role="button">Inicio</a>
+                        <a href="{{ route('categorias') }}#categorias" class="btn btn-outline-light btn-floating m-1" role="button">Categorías</a>
                     </section>
                     <section class="mb-4">
                         <p>Gracias por visitar nuestro sitio. Mantente conectado con nuestras redes sociales.</p>
@@ -168,29 +164,32 @@
     </div>
 
 
-<!--Modal para publicar libro-->
-    <div class="modal fade" id="publicarLibroModal" tabindex="-1" aria-labelledby="publicarLibroLabel" aria-hidden="true">
+    <!-- Modal para publicar libro -->
+
+    <div class="modal fade" id="publicarLibroModalInicio" tabindex="-1" aria-labelledby="publicarLibroModalInicioLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="publicarLibroLabel">Publicar un libro</h5>
+                    <h5 class="modal-title">Publicar un libro</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="publicarLibroForm">
+                    <form id="publicarLibroForm" enctype="multipart/form-data" method="POST" action="{{ route('libros.patch') }}">
+                        @csrf
+                        @method('PATCH')
                         <div class="mb-4">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="tituloLibro" class="form-label">Título del Libro</label>
-                                        <input type="text" class="form-control" id="tituloLibro" placeholder="Escribe el título del libro" required>
+                                        <input type="text" class="form-control" id="tituloLibro" name="tituloLibro" placeholder="Escribe el título del libro" required>
                                         <div class="invalid-feedback">Por favor, ingresa un título.</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="autorLibro" class="form-label">Autor</label>
-                                        <input type="text" class="form-control" id="autorLibro" placeholder="Escribe el autor del libro" required>
+                                        <label for="autor" class="form-label">Autor</label>
+                                        <input type="text" class="form-control" id="autor" name="autor" placeholder="Escribe el autor del libro" required>
                                         <div class="invalid-feedback">Por favor, ingresa el autor.</div>
                                     </div>
                                 </div>
@@ -198,15 +197,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="EditorialLibro" class="form-label">Editorial</label>
-                                        <input type="text" class="form-control" name="EditorialLibro" id="EditorialLibro" placeholder="Indique la editorial del libro" required>
+                                        <label for="editorialLibro" class="form-label">Editorial</label>
+                                        <input type="text" class="form-control" id="editorialLibro" name="editorialLibro" placeholder="Indique la editorial del libro" required>
                                         <div class="invalid-feedback">Por favor, ingresa la editorial.</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="VersionLibro" class="form-label">Versión</label>
-                                        <input type="text" class="form-control" name="VersionLibro" id="VersionLibro" placeholder="Escriba la versión del libro" required>
+                                        <label for="versionLibro" class="form-label">Versión</label>
+                                        <input type="text" class="form-control" id="versionLibro" name="versionLibro" placeholder="Escriba la versión del libro" required>
                                         <div class="invalid-feedback">Por favor, ingresa la versión.</div>
                                     </div>
                                 </div>
@@ -214,8 +213,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <label for="CodigoInternacional" class="form-label">Código Internacional</label>
-                                        <input type="text" class="form-control" name="CodigoInternacional" id="CodigoInternacional" placeholder="Escribe el Código Internacional" required>
+                                        <label for="codigoInternacional" class="form-label">Código Internacional</label>
+                                        <input type="text" class="form-control" id="codigoInternacional" name="codigoInternacional" placeholder="Escribe el Código Internacional" required>
                                         <div class="invalid-feedback">Por favor, ingresa el código internacional.</div>
                                     </div>
                                 </div>
@@ -223,15 +222,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="imagenLibro" class="form-label">Subir portada del libro</label>
-                                        <input class="form-control" type="file" id="imagenLibro" required>
+                                        <label for="photo" class="form-label">Subir portada del libro</label>
+                                        <input class="form-control" type="file" id="photo" name="photo" multiple required>
                                         <div class="invalid-feedback">Por favor, sube la portada.</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="imagenLibroContraportada" class="form-label">Contraportada (Opcional)</label>
-                                        <input class="form-control" type="file" id="imagenLibroContraportada">
+                                        <label for="photoC" class="form-label">Contraportada (Opcional)</label>
+                                        <input class="form-control" type="file" id="photoC" name="photoC">
                                     </div>
                                 </div>
                             </div>
@@ -239,7 +238,7 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="descripcionLibro" class="form-label">Descripción</label>
-                                        <textarea class="form-control" id="descripcionLibro" rows="3" placeholder="Escribe una breve descripción del libro" required></textarea>
+                                        <textarea class="form-control" id="descripcionLibro" name="description" rows="3" placeholder="Escribe una breve descripción del libro" required></textarea>
                                         <div class="invalid-feedback">Por favor, ingresa una descripción.</div>
                                     </div>
                                 </div>
@@ -248,12 +247,13 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="BtnPublicarLibro">Publicar</button>
+                    <button type="button" class="btn btn-secondary" id="cancelarLibro" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="BtnPublicarLibro">Publicar</button>
                 </div>
             </div>
         </div>
     </div>
+
 
 <!-- Modal para editar perfil con validaciones -->
     <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
@@ -264,7 +264,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="EditarForm" method="POST" action="{{ route('perfil.patch') }}">
+                    <form id="EditarForm" method="POST" enctype="multipart/form-data" action="{{ route('perfil.patch') }}">
                         @csrf
                         @method('PATCH')
                         <!-- Nombre de Usuario -->
@@ -290,8 +290,8 @@
 
                         <!-- Cambiar foto de perfil -->
                         <div class="mb-3">
-                            <label for="profileImage" class="form-label">Cambiar foto de perfil</label>
-                            <input type="file" class="form-control" id="profileImage" name="profileImage" accept="image/*">
+                            <label for="profile_photo" class="form-label">Cambiar foto de perfil</label>
+                            <input type="file" class="form-control" id="profile_photo" name="profile_photo" accept="image/*">
                             <small class="text-danger" id="imageError"></small>
                         </div>
 

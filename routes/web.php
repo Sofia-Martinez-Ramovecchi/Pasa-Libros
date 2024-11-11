@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\ControllerValidateMessage;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
@@ -17,13 +18,12 @@ Route::get('/publicaciones', function () {
     return view('IntercambioDeLibros');
 });
 
+Route::get('/misintercambios', function () {
+    return view('MisIntercambios');
+});
+
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
-
-
-Route::get('/usuarioperfil', function () {
-    return view('UsuarioPerfil');
-});
 
 Route::get('/menulogueado', function () {
     return view('MenuLogueado');
@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/perfil', [ProfileController::class, 'patch'])->name('perfil.patch');
     Route::delete('/perfil', [ProfileController::class, 'destroy'])->name('perfil.destroy');
 });
+
 
 Route::post('/logout', [ProfileController::class, 'logout'])->name('logout');
 Route::get('/auth/redirect', function () {
@@ -85,9 +86,10 @@ Route::get('/auth/callback', function () {
 
     Auth::login($user);
 
-    return redirect()->route('perfil');
+    return redirect()->route('perfil.mostrar');
 });
 
+Route::patch('/libros', [BookController::class, 'patch'])->name('libros.patch');
 
 
 require __DIR__.'/auth.php';

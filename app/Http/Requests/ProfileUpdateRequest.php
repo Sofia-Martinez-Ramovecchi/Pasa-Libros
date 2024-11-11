@@ -19,7 +19,7 @@ return [
 'name' => ['nullable', 'string', 'max:255'],
 'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
 'password' => ['nullable', 'string', 'min:6'],
-'profileImage' => ['nullable', 'image', 'max:2048'], // Máximo 2MB
+'profile_photo' => ['nullable', 'image', 'max:2048'], // Máximo 2MB
 'headerColor' => ['nullable', 'string', 'size:7'], // Ejemplo: #ff0000
 ];
 }

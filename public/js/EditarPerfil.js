@@ -50,7 +50,7 @@ function ValidarFormEditar(){
     if(!validarCampoVacio('username')){
         flag=false;
     }
-    if(!validarCampoVacio('profileImage') || !validarFoto()){
+    if(!validarCampoVacio('profile_photo') || !validarFoto()){
         flag=false;
     }
     return flag;
@@ -150,9 +150,9 @@ function validarClave(){
 function validarFoto(){
 
     // Validación de la imagen de perfil
-    const profileImage = document.getElementById("profileImage").files[0];
+    const profile_photo = document.getElementById("profile_photo").files[0];
     const imageError = document.getElementById("imageError");
-    if (profileImage && !profileImage.type.startsWith('image/')) {
+    if (profile_photo && !profile_photo.type.startsWith('image/')) {
       imageError.textContent = "El archivo seleccionado no es una imagen válida";
       return false;
     } else {
@@ -212,15 +212,15 @@ function actualizarNombreUsuario(idcampo) {
 
 
 function actualizarFotoPerfil() {
-    const profileImageInput = document.getElementById('profileImage');
-    const profileImage = document.querySelector('.perfil-img');
+    const profile_photoInput = document.getElementById('profile_photo');
+    const profile_photo = document.querySelector('.perfil-img');
 
-    if (profileImageInput.files && profileImageInput.files[0]) {
+    if (profile_photoInput.files && profile_photoInput.files[0]) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            profileImage.src = e.target.result;
+            profile_photo.src = e.target.result;
         }
-        reader.readAsDataURL(profileImageInput.files[0]);
+        reader.readAsDataURL(profile_photoInput.files[0]);
     }
 }
 

@@ -33,9 +33,9 @@ class ProfileController extends Controller
         }
 
         // Manejar la imagen de perfil si se proporciona
-        if ($request->hasFile('profileImage')) {
-            $path = $request->file('profileImage')->store('profile_images', 'public');
-            $validatedData['profile_image'] = $path;
+        if ($request->hasFile('profile_photo')) {
+            $path = $request->file('profile_photo')->store('profile_images', 'public');
+            $validatedData['profile_photo'] = $path;
         }
 
         // Actualizar el nombre de usuario
