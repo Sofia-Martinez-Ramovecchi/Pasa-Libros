@@ -24,10 +24,10 @@ class Book extends Model
         'photoC',
     ];
 
-    // Relación con el modelo User
+    // Relación con el modelo Usuario
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Usuario::class);
     }
 
     // Relación con el modelo Photo

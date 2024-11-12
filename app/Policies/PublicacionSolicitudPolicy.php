@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\PublicacionSolicitud;
-use App\Models\User;
+use App\Models\Usuario;
 use Illuminate\Auth\Access\Response;
 
 class PublicacionSolicitudPolicy
@@ -11,7 +11,7 @@ class PublicacionSolicitudPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(Usuario $user): bool
     {
         //
     }
@@ -19,7 +19,7 @@ class PublicacionSolicitudPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, PublicacionSolicitud $publicacionSolicitud): bool
+    public function view(Usuario $user, PublicacionSolicitud $publicacionSolicitud): bool
     {
         //
     }
@@ -27,7 +27,7 @@ class PublicacionSolicitudPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(Usuario $user): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class PublicacionSolicitudPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, PublicacionSolicitud $publicacionSolicitud): bool
+    public function update(Usuario $user, PublicacionSolicitud $publicacionSolicitud): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class PublicacionSolicitudPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, PublicacionSolicitud $publicacionSolicitud): bool
+    public function delete(Usuario $user, PublicacionSolicitud $publicacionSolicitud): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class PublicacionSolicitudPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, PublicacionSolicitud $publicacionSolicitud): bool
+    public function restore(Usuario $user, PublicacionSolicitud $publicacionSolicitud): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class PublicacionSolicitudPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, PublicacionSolicitud $publicacionSolicitud): bool
+    public function forceDelete(Usuario $user, PublicacionSolicitud $publicacionSolicitud): bool
     {
         //
     }

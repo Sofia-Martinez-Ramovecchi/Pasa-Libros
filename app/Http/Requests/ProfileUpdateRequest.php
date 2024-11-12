@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\User;
+use App\Models\Usuario;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -17,7 +17,7 @@ public function rules(): array
 {
 return [
 'name' => ['nullable', 'string', 'max:255'],
-'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(Usuario::class)->ignore($this->user()->id)],
 'password' => ['nullable', 'string', 'min:6'],
 'profile_photo' => ['nullable', 'image', 'max:2048'], // Máximo 2MB
 'headerColor' => ['nullable', 'string', 'size:7'], // Ejemplo: #ff0000
