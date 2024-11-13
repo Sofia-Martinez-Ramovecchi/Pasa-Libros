@@ -1,37 +1,37 @@
 const btnEnviar = document.querySelector(".enviar-btn");
-const nombre = document.getElementById("username");
-const errorUsername = document.querySelector(".username-mal");
+const nombre_usuario = document.getElementById("usuarioname");
+const errorUsername = document.querySelector(".usuarioname-mal");
 const clave = document.getElementById("password");
 const errorClave = document.querySelector(".clave-mal");
 const correo = document.getElementById("email");
 const errorCorreo = document.querySelector(".email-mal");
 
-let nombreBien = false;
+let nombre_usuarioBien = false;
 let claveBien = false;
 let emailBien = false;
 
 const validarUsername = function () {
     const regex = /^([a-zA-ZÁÉÍÓÚáéíóúñÑäÄëËïÏöÖüÜçÇ0-9 ]{2,30})$/;
-    errorUsername.textContent = nombre.title;
+    errorUsername.textContent = nombre_usuario.title;
 
-    nombre.addEventListener('input', function () {
-        if (nombre.value) {
-            if (regex.test(nombre.value)) {
+    nombre_usuario.addEventListener('input', function () {
+        if (nombre_usuario.value) {
+            if (regex.test(nombre_usuario.value)) {
                 errorUsername.classList.add('d-none')
-                nombreBien = true;
+                nombre_usuarioBien = true;
             } else {
-                errorUsername.textContent = nombre.title;
+                errorUsername.textContent = nombre_usuario.title;
                 errorUsername.classList.remove('d-none')
-                nombreBien = false;
+                nombre_usuarioBien = false;
             }
         } else {
-            errorUsername.textContent = nombre.title;
+            errorUsername.textContent = nombre_usuario.title;
             errorUsername.classList.remove('d-none')
-            nombreBien = false;
+            nombre_usuarioBien = false;
         }
     })
 
-    return nombreBien;
+    return nombre_usuarioBien;
 }
 
 const validarCorreo = function () {
@@ -91,7 +91,7 @@ btnEnviar.addEventListener('click', function (e) {
     }
 
     if (validarUsername() && validarClave() && validarCorreo()) {
-        nombre.value = ''
+        nombre_usuario.value = ''
         correo.value = ''
         clave.value = ''
         window.location.href = '../Main/main.html';

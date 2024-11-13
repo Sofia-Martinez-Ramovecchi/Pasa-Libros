@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\BookController;
+use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\ControllerValidateMessage;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
@@ -16,6 +16,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('password/request', [PasswordController::class, 'request'])->name('password.request');
+
 Route::get('/publicaciones', function () {
     return view('IntercambioDeLibros');
 });
@@ -24,13 +26,13 @@ Route::get('/misintercambios', function () {
     return view('MisIntercambios');
 });
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
+//Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+//Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
 
 Route::get('/menulogueado', function () {
     return view('MenuLogueado');
 });
-#IDEA: mapa esta vacio
+
 Route::get('/mapa', function () {
     return view('mapa');
 });
@@ -55,7 +57,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/perfil', [ProfileController::class, 'destroy'])->name('perfil.destroy');
 });
 
-
 Route::post('/logout', [ProfileController::class, 'logout'])->name('logout');
 Route::get('/auth/redirect', function () {
     return Socialite::driver('google')->redirect();
@@ -78,11 +79,11 @@ Route::get('/auth/callback', function () {
         // Si el usuario no existe, crear uno nuevo
         $usuario = Usuario::create([
             'google_id' => $googleUsuario->id,
-            'name' => $googleUsuario->name,
+            'nombre_usuario' => $googleUsuario->name,
             'email' => $googleUsuario->email,
             'google_token' => $googleUsuario->token,
             'google_refresh_token' => $googleUsuario->refreshToken,
-            'password' => bcrypt(Str::random(16)), // Genera una contraseña aleatoria
+            'password' => bcrypt(Str::random(16)),
         ]);
     }
 
@@ -91,7 +92,6 @@ Route::get('/auth/callback', function () {
     return redirect()->route('perfil.mostrar');
 });
 
-Route::patch('/libros', [BookController::class, 'patch'])->name('libros.patch');
 
 
 require __DIR__.'/auth.php';

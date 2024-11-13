@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
@@ -8,20 +7,24 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Gate;
 
 class ProfileController extends Controller
 {
     /**
-     * Display the user's profile form.
+     * Display the usuario's profile form.
      */
+    public function mostrar(Request $request): View
+    {
+        $usuario = $request->user();
 
-    public function mostrar(Request $request): View{
-        return view('Perfil',[
-            'user'=>$request->user(),
-        ]);
+        // Verificar si el usuario puede ver su perfil
+        Gate::authorize('viewProfile', $usuario);
+
+        return view('Perfil', compact('usuario'));
     }
     /**
-     * Update the user's profile information.
+     * Update the usuario's profile information.
      */
     public function patch(ProfileUpdateRequest $request): RedirectResponse
     {
@@ -38,9 +41,9 @@ class ProfileController extends Controller
             $validatedData['profile_photo'] = $path;
         }
 
-        // Actualizar el nombre de usuario
-        if (!empty($validatedData['name'])) {
-            $request->user()->name = $validatedData['name'];
+        // Actualizar el nombre_usuario de usuario
+        if (!empty($validatedData['nombre_usuario'])) {
+            $request->user()->nombre_usuario = $validatedData['nombre_usuario'];
         }
 
         // Actualizar otros datos del usuario
@@ -58,25 +61,30 @@ class ProfileController extends Controller
         return Redirect::route('perfil.mostrar')->with('status', 'success');
     }
 
-
-
-
-
     /**
-     * Delete the user's account.
+     * Delete the usuario's account.
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
+        $request->validateWithBag('usuarioDeletion', [
             'password' => ['required', 'current_password'],
         ]);
 
-        $user = $request->user();
+        $usuario = $request->user();
 
         Auth::logout();
 
-        $user->delete();
+        $usuario->delete();
 
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return Redirect::to('/');
+    }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

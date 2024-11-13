@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<?php
+use Illuminate\Support\Facades\Auth
+?>
+
+@can('viewProfile', $usuario)
+
+
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -174,7 +181,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="publicarLibroForm" enctype="multipart/form-data" method="POST" action="{{ route('libros.patch') }}">
+                    <form id="publicarLibroForm" enctype="multipart/form-data" method="POST" >
                         @csrf
                         @method('PATCH')
                         <div class="mb-4">
@@ -316,3 +323,4 @@
 
 </body>
 </html>
+@endcan

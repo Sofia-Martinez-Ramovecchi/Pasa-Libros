@@ -15,9 +15,9 @@
 
                     if (navigator.geolocation) {
                         navigator.geolocation.getCurrentPosition(function (position) {
-                            var userLocation = [position.coords.latitude, position.coords.longitude];
-                            map.setView(userLocation, 15);
-                            L.marker(userLocation).addTo(map)
+                            var usuarioLocation = [position.coords.latitude, position.coords.longitude];
+                            map.setView(usuarioLocation, 15);
+                            L.marker(usuarioLocation).addTo(map)
                                 .bindPopup('Mi ubicación actual')
                                 .openPopup();
                         }, function () {

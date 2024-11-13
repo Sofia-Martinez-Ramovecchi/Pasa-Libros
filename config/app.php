@@ -125,7 +125,8 @@ return [
     'aliases' => [
         // Otros alias
         'User' => App\Models\Usuario::class,
-    ],
+        'File' => Illuminate\Support\Facades\File::class,
 
+    ],
 
 ];

@@ -12,7 +12,7 @@ class Book extends Model
     /**
      * @var int|mixed|string|null
      */
-    public mixed $user_id;
+    public mixed $usuario_id;
     protected $fillable = [
         'tituloLibro',
         'autor',
@@ -25,7 +25,7 @@ class Book extends Model
     ];
 
     // Relación con el modelo Usuario
-    public function user()
+    public function usuario()
     {
         return $this->belongsTo(Usuario::class);
     }

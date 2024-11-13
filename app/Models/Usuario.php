@@ -5,12 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class Usuario extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
-    protected $table = 'usuario'; // Asegúrate de que este es el nombre correcto de la tabla
+    protected $table = 'usuario'; // Asegúrate de que este es el nombre_usuario correcto de la tabla
+
+    protected $primaryKey = 'id_usuario';
+
+    public $timestamps = true;
 
     /**
      * The attributes that are mass assignable.
@@ -18,11 +23,11 @@ class Usuario extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'nombre',
+        'nombre_usuario',
         'email',
         'password',
         'profile_photo', // Agrega este campo
-
+        'id_estado_cuenta',//tendra un valor por defecto de 1
         'google_id',
         'google_token',
         'google_refresh_token',

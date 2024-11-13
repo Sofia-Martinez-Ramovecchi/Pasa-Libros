@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
                 document.getElementById('headerColorInput').addEventListener('input', cambiarHeader());
                 actualizarFotoPerfil();  //
-                actualizarNombreUsuario('username');  //
+                actualizarNombreUsuario('usuarioname');  //
                 cerrarModal('editProfileModal');
                 limpiarInpts('editarPerfilForm');
             }
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded',function(){
 function ValidarFormEditar(){
     let flag=true;
 
-    if(!validarCampoVacio('username') || !ValidarCaracteres('username')){
+    if(!validarCampoVacio('usuarioname') || !ValidarCaracteres('usuarioname')){
         flag=false;
     }
     if(!validarCampoVacio('email') || !validarmail()){
@@ -47,7 +47,7 @@ function ValidarFormEditar(){
     if(!validarCampoVacio('password') || !validarClave()){
         flag=false;
     }
-    if(!validarCampoVacio('username')){
+    if(!validarCampoVacio('usuarioname')){
         flag=false;
     }
     if(!validarCampoVacio('profile_photo') || !validarFoto()){
@@ -203,10 +203,10 @@ function limpiarInpts(formId){
 
 function actualizarNombreUsuario(idcampo) {
     let NuevoNombre = document.getElementById(idcampo).value.trim();
-    let nombreviejo = document.getElementById('username');
+    let nombre_usuarioviejo = document.getElementById('usuarioname');
 
     if (NuevoNombre !== '') {
-        nombreviejo.textContent = NuevoNombre;
+        nombre_usuarioviejo.textContent = NuevoNombre;
     }
 }
 

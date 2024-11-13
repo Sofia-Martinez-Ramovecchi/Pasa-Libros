@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/Componentes/form.css">
     <link rel="icon" href="../Img/ico/logo-color.ico">
-    <script defer src="../../public/js/form.js"></script>
+    <script defer src="../js/form.js"></script>
 </head>
 
 <body>
@@ -32,7 +32,7 @@
                                               :value="old('name')"
                                               required autofocus autocomplete="name"
                                               placeholder="Ingresa tu correo"
-                                >Ingrese un nombre</x-text-input>
+                                >Ingrese un nombre_usuario</x-text-input>
                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                             </div>
                         <!-- Email Address -->
@@ -42,7 +42,7 @@
                                           type="email"
                                           name="email"
                                           :value="old('email')"
-                                          required autocomplete="username"
+                                          required autocomplete="usuarioname"
                                           placeholder="Ingresa tu correo"
                             />
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />

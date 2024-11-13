@@ -108,9 +108,9 @@
                 <form id="editarPerfilForm">
                     <!-- Nombre de Usuario -->
                     <div class="mb-3">
-                    <label for="username" class="form-label">Nombre de usuario</label>
-                    <input type="text" class="form-control" id="username" placeholder="Nombre de usuario (opcional)">
-                    <small class="text-danger" id="usernameError"></small>
+                    <label for="usuarioname" class="form-label">Nombre de usuario</label>
+                    <input type="text" class="form-control" id="usuarioname" placeholder="Nombre de usuario (opcional)">
+                    <small class="text-danger" id="usuarionameError"></small>
                     </div>
 
                     <!-- Email -->
