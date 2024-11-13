@@ -38,7 +38,7 @@
                             <a class="nav-link" href="{{ route('usuarios.index') }}">{{ __('Administrador de usuarios') }}</a>
                         </li>
                         <li class="nav-item opciones-menu">
-                            <a class="nav-link" href="{{ route('usuarios.index') }}">{{ __('Reportar publicaciones') }}</a>
+                            <a class="nav-link" href="{{ route('publicaciones.mostrar') }}">{{ __('Reportar publicaciones') }}</a>
                         </li>
                         <li class="nav-item opciones-menu">
                             <a class="nav-link" href="{{ route('publicaciones.reportadas') }}">{{ __('Ver publicaciones reportadas') }}</a>

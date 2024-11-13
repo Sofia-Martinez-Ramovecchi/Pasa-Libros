@@ -6,6 +6,7 @@ use App\Models\Usuario;
 use Illuminate\Http\Request;
 use App\Models\RolUsuario;
 use App\Models\PublicacionReporte;
+use App\Models\Publicacion;
 
 class AdministradorController extends Controller
 {
@@ -100,4 +101,11 @@ class AdministradorController extends Controller
     // Pasar las publicaciones reportadas a la vista
     return view('publicaciones.reportadas', compact('publicacionesReportadas'));
 }
+
+public function mostrarPublicaciones()
+{
+    $publicaciones = Publicacion::with(['estado_publicacion', 'libro', 'localidad', 'criticas', 'reportes'])->paginate(10);
+    return view('publicaciones.mostrar', compact('publicaciones'));
+}
+
 }

@@ -18,6 +18,12 @@ Route::get('usuarios/{id}/perfil', [AdministradorController::class, 'verPerfil']
 
 Route::get('/publicaciones-reportadas', [AdministradorController::class, 'publicacionesReportadas'])->name('publicaciones.reportadas');
 
+Route::get('/publicaciones-mostrar', [AdministradorController::class, 'mostrarPublicaciones'])->name('publicaciones.mostrar');
+
+Route::get('/publicaciones/{publicacion}', [AdministradorController::class, 'verPublicacion'])->name('publicaciones.ver');
+
+
+
 
 
 Route::post('/publicaciones', [ControllerValidateMessage::class, 'store'])->name('publicaciones.store');
