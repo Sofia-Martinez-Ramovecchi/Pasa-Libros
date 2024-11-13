@@ -181,7 +181,7 @@ use Illuminate\Support\Facades\Auth
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="publicarLibroForm" enctype="multipart/form-data" method="POST" >
+                    <form id="publicarLibroForm" enctype="multipart/form-data" method="POST">
                         @csrf
                         @method('PATCH')
                         <div class="mb-4">
