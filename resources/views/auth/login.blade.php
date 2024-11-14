@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 use Illuminate\Support\Facades\Route
 
@@ -58,7 +57,6 @@ use Illuminate\Support\Facades\Route
         </form>
     </div>
 </x-guest-layout>
-=======
 @extends('layouts.app')
 
 @section('content')
@@ -132,4 +130,3 @@ use Illuminate\Support\Facades\Route
     </div>
 </div>
 @endsection
->>>>>>> 3d3410b829456a9f6cc57a658c8609a8988e9810

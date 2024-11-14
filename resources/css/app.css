@@ -1,8 +1,6 @@
-<<<<<<< HEAD
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-=======
 .botones{
     margin: 5px;
 }
@@ -10,4 +8,3 @@
 .opciones-menu{
     margin: 10px;
 }
->>>>>>> 3d3410b829456a9f6cc57a658c8609a8988e9810
