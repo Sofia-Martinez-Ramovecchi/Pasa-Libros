@@ -122,5 +122,11 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+    'aliases' => [
+        // Otros alias
+        'User' => App\Models\Usuario::class,
+        'File' => Illuminate\Support\Facades\File::class,
+
+    ],
 
 ];

@@ -1,0 +1,55 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #1e3a8a, #7f1d8e); /* Fondo de cielo nocturno */
+    color: white;
+}
+.container-center {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 4rem; /* Espacio reducido debajo del navbar */
+}
+h1 {
+    font-size: 4rem; /* Tamaño de título más grande */
+    font-weight: bold;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4); /* Sombra para resaltar */
+    margin-bottom: 1rem;
+}
+.tagline {
+    font-size: 1.5rem; /* Tamaño de fuente del texto de acompañamiento */
+    color: #d1c4e9; /* Color más claro para acompañar el título */
+}
+.login-form {
+    background: rgba(255, 255, 255, 0.2); /* Fondo translúcido */
+    padding: 2rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+footer {
+    background-color: #1a1a40; /* Violeta oscuro */
+    color: white;
+    padding: 2rem 0; /* Footer más alto */
+    text-align: center;
+}
+.navbar {
+    background-color: #3b185f; /* Azul/violeta profundo */
+}
+.btn-violet {
+    background: linear-gradient(135deg, #6a0dad, #9b59b6); /* Degradado violeta */
+    color: white;
+    border: none;
+    font-weight: bold;
+}
+
+.btn-violet:hover {
+    background: linear-gradient(135deg, #8a2be2, #380341); /* Efecto de hover */
+    color: rgb(255, 255, 255);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
