@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\ControllerValidateMessage;
-<<<<<<< HEAD
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
@@ -11,15 +10,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
-
-=======
-use App\Http\Controllers\UserController; 
-use App\Http\Controllers\AdministradorController; 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
+//use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdministradorController;
 
 
-
+//usuarios administrador
 Route::get('/usuarios', [AdministradorController::class, 'index'])->name('usuarios.index');
 Route::get('/usuarios/create', [AdministradorController::class, 'create']);
 Route::delete('/usuarios/{usuario}', [AdministradorController::class, 'destroy'])->name('usuarios.destroy');
@@ -28,6 +23,7 @@ Route::patch('/usuarios/{usuario}', [AdministradorController::class, 'update'])-
 Route::post('/usuarios/{usuario}/suspender', [AdministradorController::class, 'suspender'])->name('usuarios.suspender');
 Route::get('usuarios/{id}/perfil', [AdministradorController::class, 'verPerfil'])->name('usuarios.verPerfil');
 
+//publicacion rama lea
 Route::get('/publicaciones-reportadas', [AdministradorController::class, 'publicacionesReportadas'])->name('publicaciones.reportadas');
 
 Route::get('/publicaciones-mostrar', [AdministradorController::class, 'mostrarPublicaciones'])->name('publicaciones.mostrar');
@@ -39,7 +35,6 @@ Route::get('/publicaciones/{publicacion}', [AdministradorController::class, 'ver
 
 
 Route::post('/publicaciones', [ControllerValidateMessage::class, 'store'])->name('publicaciones.store');
->>>>>>> 3d3410b829456a9f6cc57a658c8609a8988e9810
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,7 +42,6 @@ Route::get('/', function () {
 
 Route::get('password/request', [PasswordController::class, 'request'])->name('password.request');
 
-<<<<<<< HEAD
 Route::get('/publicaciones', function () {
     return view('IntercambioDeLibros');
 });
@@ -75,7 +69,8 @@ Route::get('/inicio#categorias', function () {
     return view('InicioPL');
 })->name('categorias');
 
-Route::post('/publicaciones', [ControllerValidateMessage::class, 'store'])->name('publicaciones.store');
+//version anterior
+//Route::post('/publicaciones', [ControllerValidateMessage::class, 'store'])->name('publicaciones.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -122,12 +117,7 @@ Route::get('/auth/callback', function () {
     return redirect()->route('perfil.mostrar');
 });
 
-
-
-require __DIR__.'/auth.php';
-=======
-
-Auth::routes(['register'=>false, 'login'=>false]);
+//Auth::routes(['register'=>false, 'login'=>false]); lo hizo un framework, verificar si es importante
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
->>>>>>> 3d3410b829456a9f6cc57a658c8609a8988e9810
+require __DIR__.'/auth.php'; //verificar si es importante
