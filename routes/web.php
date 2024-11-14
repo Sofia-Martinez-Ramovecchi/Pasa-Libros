@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\ControllerValidateMessage;
+<<<<<<< HEAD
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
@@ -11,6 +12,34 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 
+=======
+use App\Http\Controllers\UserController; 
+use App\Http\Controllers\AdministradorController; 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
+
+
+Route::get('/usuarios', [AdministradorController::class, 'index'])->name('usuarios.index');
+Route::get('/usuarios/create', [AdministradorController::class, 'create']);
+Route::delete('/usuarios/{usuario}', [AdministradorController::class, 'destroy'])->name('usuarios.destroy');
+Route::get('/usuarios/{usuario}/edit', [AdministradorController::class, 'edit'])->name('usuarios.edit');
+Route::patch('/usuarios/{usuario}', [AdministradorController::class, 'update'])->name('usuarios.update');
+Route::post('/usuarios/{usuario}/suspender', [AdministradorController::class, 'suspender'])->name('usuarios.suspender');
+Route::get('usuarios/{id}/perfil', [AdministradorController::class, 'verPerfil'])->name('usuarios.verPerfil');
+
+Route::get('/publicaciones-reportadas', [AdministradorController::class, 'publicacionesReportadas'])->name('publicaciones.reportadas');
+
+Route::get('/publicaciones-mostrar', [AdministradorController::class, 'mostrarPublicaciones'])->name('publicaciones.mostrar');
+
+Route::get('/publicaciones/{publicacion}', [AdministradorController::class, 'verPublicacion'])->name('publicaciones.ver');
+
+
+
+
+
+Route::post('/publicaciones', [ControllerValidateMessage::class, 'store'])->name('publicaciones.store');
+>>>>>>> 3d3410b829456a9f6cc57a658c8609a8988e9810
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,6 +47,7 @@ Route::get('/', function () {
 
 Route::get('password/request', [PasswordController::class, 'request'])->name('password.request');
 
+<<<<<<< HEAD
 Route::get('/publicaciones', function () {
     return view('IntercambioDeLibros');
 });
@@ -95,3 +125,9 @@ Route::get('/auth/callback', function () {
 
 
 require __DIR__.'/auth.php';
+=======
+
+Auth::routes(['register'=>false, 'login'=>false]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+>>>>>>> 3d3410b829456a9f6cc57a658c8609a8988e9810

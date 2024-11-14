@@ -1,5 +1,6 @@
 {
   "name": "pasa-libros",
+<<<<<<< HEAD
     "type": "module",
     "version": "1.0.0",
   "description": "<p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img src=\"https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg\" width=\"400\" alt=\"Laravel Logo\"></a></p>",
@@ -34,4 +35,21 @@
 
 
 "homepage": "https://github.com/Sofia-Martinez-Ramovecchi/Pasa-Libros#readme"
+=======
+  "version": "1.0.0",
+  "description": "Laravel Project",
+  "main": "vite.config.js",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "laravel-vite-plugin": "^1.0.5",
+    "vite": "^5.4.10"
+  },
+  "type": "module",
+  "devDependencies": {
+    "sass-embedded": "^1.80.6"
+  }
+>>>>>>> 3d3410b829456a9f6cc57a658c8609a8988e9810
 }
