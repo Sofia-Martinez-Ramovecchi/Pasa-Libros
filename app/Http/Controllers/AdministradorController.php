@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
-use App\Models\RolUsuario;
+use App\Models\Role;
 use App\Models\PublicacionReporte;
 use App\Models\Publicacion;
 
@@ -23,7 +23,7 @@ class AdministradorController extends Controller
         // Obtener los usuarios con las relaciones 'rol_usuario' y 'estado_cuentum'
         $usuarios = Usuario::when($search, function ($query, $search) {
             return $query->where('nombre_usuario', 'like', "%{$search}%");
-        })->with(['rol_usuario', 'estado_cuentum']) // Cargar las relaciones
+        })->with(['role', 'estado_cuentum']) // Cargar las relaciones
             ->paginate(10); // Filtra y pagina los resultados
 
         /*$usuarios = Usuario::when($search, function ($query, $search) {
@@ -49,7 +49,7 @@ class AdministradorController extends Controller
     {
 
         $usuario = Usuario::findOrFail($id);
-        $roles = RolUsuario::all(); // Obtener todos los roles disponibles
+        $roles = Role::all(); // Obtener todos los roles disponibles
         return view('usuarios.edit', compact('usuario', 'roles'));
     }
 
@@ -107,5 +107,12 @@ public function mostrarPublicaciones()
     $publicaciones = Publicacion::with(['estado_publicacion', 'libro', 'localidad', 'criticas', 'reportes'])->paginate(10);
     return view('publicaciones.mostrar', compact('publicaciones'));
 }
+
+public function verPublicacion($id)
+{
+    $publicacion = Publicacion::with(['estado_publicacion', 'libro', 'localidad', 'criticas', 'reportes'])->findOrFail($id);
+    return view('publicaciones.ver', compact('publicacion'));
+}
+
 
 }

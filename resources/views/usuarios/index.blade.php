@@ -47,9 +47,9 @@
                 <td>{{ $usuario->nombre_usuario }}</td>
                 <td>{{ $usuario->password }}</td>
                 <td>{{ $usuario->email }}</td>
-                <td>{{ $usuario->rol_usuario->nombre_rol ?? 'No asignado' }}</td> <!-- Asegúrate de que 'nombre_rol' sea el atributo correcto en RolUsuario -->
+                <td>{{ $usuario->role->name ?? 'No asignado' }}</td> 
                 <!-- Mostrar el nombre del estado -->
-                <td>{{ $usuario->estado_cuentum->nombre_estado_cuenta ?? 'No asignado' }}</td> <!-- Asegúrate de que 'nombre_estado' sea el atributo correcto en EstadoCuentum -->
+                <td>{{ $usuario->estado_cuentum->nombre_estado_cuenta ?? 'No asignado' }}</td> 
                 <td>
 
                 <td>

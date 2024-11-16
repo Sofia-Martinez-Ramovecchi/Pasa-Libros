@@ -1,26 +1,25 @@
 <?php
-namespace App\Models;
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-class Publicacion extends Model
-{
 
-    public $usuario_id;
 /**
  * Created by Reliese Model.
  */
 
+namespace App\Models;
+
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+
 /**
  * Class Publicacion
- *
+ * 
  * @property int $id_publicacion
  * @property int $id_estado_publicacion
  * @property int $id_libro
  * @property int $id_localidad
  * @property Carbon $fecha_creacion
  * @property string|null $descripcion_publicacion
- *
+ * 
  * @property EstadoPublicacion $estado_publicacion
  * @property Libro $libro
  * @property Localidad $localidad
@@ -29,7 +28,8 @@ class Publicacion extends Model
  *
  * @package App\Models
  */
-
+class Publicacion extends Model
+{
 	protected $table = 'publicacion';
 	protected $primaryKey = 'id_publicacion';
 	public $timestamps = false;
@@ -74,5 +74,4 @@ class Publicacion extends Model
 		return $this->belongsToMany(Reporte::class, 'publicacion_reporte', 'id_publicacion', 'id_reporte')
 					->withPivot('id_publicacion_reporte', 'id_usuario', 'comentario_reporte', 'fecha_creacion');
 	}
-
 }
