@@ -1,10 +1,14 @@
+<?php
+use Illuminate\Support\Facades\Session
+?>
+
 @extends('layouts.app')
 
 @section('content')
 
 <div class="container">
 
-    <h1>Administrador de usuarios</h1>
+    <h1><b>Administrador de usuarios</b></h1>
 
 @if(Session::has('Mensaje'))
 
@@ -16,7 +20,7 @@
 
 @endif
 
-<form action="{{ route('usuarios.index') }}" method="GET" class="form-inline mb-3">
+<form action="{{ route('usuarios.index') }}" method="GET" class="form-inline mb-3" style="margin-top:10px">
     <div class="input-group w-100">
         <input type="text" name="search" class="form-control" placeholder="Buscar por nombre de usuario" value="{{ request('search') }}">
             <button type="submit" class="btn btn-info ml-2"><span class="input-group-text"><i class="fa fa-search"></i></span></button> <!-- Ícono de lupa -->
@@ -31,9 +35,7 @@
             <th>#</th>
             <th>Id</th>
             <th>Nombre</th>
-            <th>Contraseña</th>
             <th>Email</th>
-            <th>Rol</th>
             <th>Estado</th>
             <th>Acciones</th>
         </tr>
@@ -45,22 +47,17 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $usuario->id_usuario }}</td>
                 <td>{{ $usuario->nombre_usuario }}</td>
-                <td>{{ $usuario->password }}</td>
                 <td>{{ $usuario->email }}</td>
-                <td>{{ $usuario->role->name ?? 'No asignado' }}</td> 
-                <!-- Mostrar el nombre del estado -->
                 <td>{{ $usuario->estado_cuentum->nombre_estado_cuenta ?? 'No asignado' }}</td> 
-                <td>
+    
 
                 <td>
 
                     <a class="btn btn-primary botones"  href="{{route('usuarios.verPerfil', $usuario)}}">Ver perfil</a>
 
-
-                    <a class="btn btn-warning botones" href="{{route('usuarios.edit', $usuario)}}">Editar</a>
-
                     <form action="{{ route('usuarios.suspender', $usuario) }}" method="POST" style="display:inline">
                         @csrf
+                        <input type="number" name="duracion_suspension" placeholder="Días" min="1" class="form-control" style="width: 80px; display: inline;">
                         <button class="btn btn-secondary botones" type="submit">Suspender</button>
                     </form>
                     

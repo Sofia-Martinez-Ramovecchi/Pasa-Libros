@@ -47,22 +47,6 @@
 
             <br />
 
-            <!-- Campo select para id_rol -->
-            <div class="form-group">
-                <label class="control-label" for="id_rol">{{ 'Rol' }}</label>
-                <select class="form-control {{ $errors->has('id_rol') ? 'is-invalid' : '' }}" name="id_rol" id="id_rol">
-                    <option value="">Seleccione un rol</option>
-                    @foreach($roles as $rol)
-                        <option value="{{ $rol->id }}" {{ $usuario->id_rol == $rol->id ? 'selected' : '' }}>
-                            {{ $rol->nombre_rol }} <!-- Ajusta esto según el nombre del rol -->
-                        </option>
-                    @endforeach
-                </select>
-                {!! $errors->first('id_rol', '<div class="invalid-feedback">:message</div>') !!}
-            </div>
-            <br />
-
-
             <button class="btn btn-success" type="submit">Guardar</button>
             <a class="btn btn-dark" href="{{ route('usuarios.index') }}">Regresar</a>
 

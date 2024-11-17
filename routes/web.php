@@ -30,6 +30,13 @@ Route::get('/publicaciones-mostrar', [AdministradorController::class, 'mostrarPu
 
 Route::get('/publicaciones/{publicacion}', [AdministradorController::class, 'verPublicacion'])->name('publicaciones.ver');
 
+Route::post('/publicaciones/{id}/reportar', [AdministradorController::class, 'reportarPublicacion'])->name('publicaciones.reportar');
+
+Route::get('/publicaciones/{id}/reportadas', [AdministradorController::class, 'verPublicacionReportada'])->name('publicacionesreportadas.ver');
+
+Route::delete('/publicaciones/{id}/eliminar', [AdministradorController::class, 'eliminarPublicacion'])->name('publicaciones.eliminar');
+
+
 
 
 

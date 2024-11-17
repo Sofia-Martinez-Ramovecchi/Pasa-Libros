@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Lista de Publicaciones</h1>
+    <h1><b>Lista de Publicaciones</b></h1>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -20,9 +20,9 @@
             @foreach($publicaciones as $publicacion)
                 <tr>
                     <td>{{ $publicacion->id_publicacion }}</td>
-                    <td>{{ $publicacion->estado_publicacion->nombre_estado ?? 'N/A' }}</td>
-                    <td>{{ $publicacion->libro->titulo ?? 'N/A' }}</td>
-                    <td>{{ $publicacion->localidad->nombre ?? 'N/A' }}</td>
+                    <td>{{ $publicacion->estado_publicacion->nombre_estado_publicacion ?? 'N/A' }}</td>
+                    <td>{{ $publicacion->libro->nombre_libro ?? 'N/A' }}</td>
+                    <td>{{ $publicacion->localidad->nombre_localidad ?? 'N/A' }}</td>
                     <td>{{ $publicacion->fecha_creacion->format('d-m-Y') }}</td>
                     <td>{{ $publicacion->descripcion_publicacion }}</td>
 
