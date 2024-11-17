@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Session
 <form action="{{ route('usuarios.index') }}" method="GET" class="form-inline mb-3" style="margin-top:10px">
     <div class="input-group w-100">
         <input type="text" name="search" class="form-control" placeholder="Buscar por nombre de usuario" value="{{ request('search') }}">
-            <button type="submit" class="btn btn-info ml-2"><span class="input-group-text"><i class="fa fa-search"></i></span></button> <!-- Ícono de lupa -->
+            <button type="submit" class="btn btn-warning ml-2"><span class="input-group-text"><i class="fa fa-search"></i></span></button> <!-- Ícono de lupa -->
     </div>
 </form>
 
