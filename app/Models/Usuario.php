@@ -6,10 +6,17 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
+ use Carbon\Carbon;
+ use Illuminate\Database\Eloquent\Collection;
+ use Illuminate\Database\Eloquent\Model;
+// use Spatie\Permission\Traits\HasRoles;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 /**
  * Class Usuario
  * 
@@ -35,8 +42,11 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
+    use HasRoles, HasFactory, Notifiable;
+
+    
 	protected $table = 'usuario';
 	protected $primaryKey = 'id_usuario';
 
@@ -46,6 +56,7 @@ class Usuario extends Model
 
 	protected $hidden = [
 		'password',
+		'id_estado_cuenta',
 		'google_token',
 		'google_refresh_token',
 		'remember_token'
@@ -92,4 +103,11 @@ class Usuario extends Model
 	{
 		return $this->hasMany(SolicitudIntercambio::class, 'id_usuario_ofertante');
 	}
+
+	// En el modelo Usuario.php
+public function localidad()
+{
+    return $this->belongsTo(Localidad::class, 'id_localidad');
+}
+
 }

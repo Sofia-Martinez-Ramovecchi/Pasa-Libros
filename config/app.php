@@ -126,6 +126,7 @@ return [
         // Otros alias
         'User' => App\Models\Usuario::class,
         'File' => Illuminate\Support\Facades\File::class,
+        'Auth' => Illuminate\Support\Facades\Auth::class,
 
     ],
 

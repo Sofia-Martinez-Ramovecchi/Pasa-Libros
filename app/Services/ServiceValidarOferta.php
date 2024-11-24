@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Contracts\ServiceChatProfanityApiAgentInterface;
 
-class ServiceValidadOferta
+class ServiceValidarOferta
 {
     private ServiceChatProfanityApiAgentInterface $agent;
 

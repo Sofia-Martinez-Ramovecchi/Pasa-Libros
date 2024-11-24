@@ -12,6 +12,8 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 //use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdministradorController;
+use App\Http\Controllers\UsuarioController;
+
 
 
 //usuarios administrador
@@ -37,6 +39,12 @@ Route::get('/publicaciones/{id}/reportadas', [AdministradorController::class, 'v
 Route::delete('/publicaciones/{id}/eliminar', [AdministradorController::class, 'eliminarPublicacion'])->name('publicaciones.eliminar');
 
 
+Route::get('/publicacioness', [UsuarioController::class, 'index'])->name('publicaciones.index');
+
+Route::middleware('/usuario/publicaciones', [UsuarioController::class, 'mostrarPublicacionesUsuarios'])->name('usuario.publicaciones');
+
+
+Route::middleware(['auth'])->get('/solicitudes-intercambio', [UsuarioController::class, 'solicitudesIntercambio'])->name('solicitudes.index');
 
 
 

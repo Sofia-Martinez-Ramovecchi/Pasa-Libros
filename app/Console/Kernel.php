@@ -24,6 +24,6 @@ class Kernel extends ConsoleKernel
     {
         // Aquí defines las tareas programadas
 
-        $schedule->command('usuarios:revisar-suspensiones')->everyMinute();
+        $schedule->command('usuarios:revisar-suspensiones')->daily();
     }
 }
